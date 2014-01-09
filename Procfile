@@ -1,1 +1,1 @@
-web: gunicorn ramblrrr.wsgi
+web: gunicorn streetfarer.wsgi
