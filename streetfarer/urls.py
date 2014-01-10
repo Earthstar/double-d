@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, include, url
-
+from pathgenerator.views import hello
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+	url(r'^hello/', hello),
     # Examples:
     # url(r'^$', 'streetfarer.views.home', name='home'),
     # url(r'^streetfarer/', include('streetfarer.foo.urls')),
