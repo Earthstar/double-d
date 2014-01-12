@@ -1,0 +1,147 @@
+[
+  {
+    "model": "pathgenerator.place",
+    "pk": 1,
+    "fields": {
+      "latitude": 42.360447,
+      "longitude": -71.086986,
+      "address": "70 Amherst St, Cambridge MA, 02142",
+      "name": "Senior House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 2,
+    "fields": {
+      "latitude": 42.359414,
+      "longitude": -71.087490,
+      "address": "3 Ames St, Cambridge MA, 02139",
+      "name": "East Campus",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 3,
+    "fields": {
+      "latitude": 42.362233,
+      "longitude": -71.098275,
+      "address": "290 Massachusetts Ave, Cambridge, MA 02139",
+      "name": "Random Hall",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 4,
+    "fields": {
+      "latitude": 42.356244,
+      "longitude": -71.096454,
+      "address": "362 Memorial Drive Cambridge, MA 02139",
+      "name": "Baker House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 5,
+    "fields": {
+      "latitude": 42.355615,
+      "longitude": -71.098296,
+      "address": "410 Memorial Drive Cambridge, MA 02139",
+      "name": "Burton-Connor House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 6,
+    "fields": {
+      "latitude": 42.355197,
+      "longitude": -71.099524,
+      "address": "450 Memorial Drive Cambridge, MA 02139",
+      "name": "MacGregor House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 7,
+    "fields": {
+      "latitude": 42.356739,
+      "longitude": -71.094988,
+      "address": "320 Memorial Drive Cambridge, MA 02139",
+      "name": "McCormick Hall",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 8,
+    "fields": {
+      "latitude": 42.355015,
+      "longitude": -71.100063,
+      "address": "471 Memorial Drive Cambridge, MA 02139",
+      "name": "New House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 9,
+    "fields": {
+      "latitude": 42.354529,
+      "longitude": -71.101485,
+      "address": "500 Memorial Drive Cambridge, MA  02139",
+      "name": "Next House",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 10,
+    "fields": {
+      "latitude": 42.356840,
+      "longitude": -71.094660,
+      "address": "305 Memorial Drive Cambridge, MA 02139",
+      "name": "Maseeh Hall",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.place",
+    "pk": 11,
+    "fields": {
+      "latitude": 42.357077,
+      "longitude": -71.101405,
+      "address": "229 Vassar Street Cambridge, MA 02139",
+      "name": "Simmons Hall",
+      "raw_data": ""
+    }
+  },
+  {
+    "model": "pathgenerator.tag",
+    "pk": 12,
+    "fields": {
+      "tag": "dorm",
+      "places": [1,2,3,4,5,6,7,8,9,10,11]
+    }
+  },
+  {
+    "model": "pathgenerator.tag",
+    "pk": 13,
+    "fields": {
+      "tag": "east campus",
+      "places": [1,2,3]
+    }
+  },
+  {
+    "model": "pathgenerator.tag",
+    "pk": 14,
+    "fields": {
+      "tag": "west campus",
+      "places": [4,5,6,7,8,9,10,11]
+    }
+  }
+]

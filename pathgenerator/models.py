@@ -5,6 +5,7 @@ class Place(models.Model):
     Represents a place that could be added to a path
     A Place has a latitude, longitude, an address, a name, and tags
     Not implementing events
+    Not sure if case matters
     '''
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
@@ -23,13 +24,14 @@ class Place(models.Model):
         '''
         return self.name, self.address
 
-class Tag:
+class Tag(models.Model):
     '''
     Represents a feature of a place.
     Each tag may belong to multiple places and vice versa
+    all characters are lowercase
     '''
     tag = models.TextField()
-    place = models.ManyToManyField(Place)
+    places = models.ManyToManyField(Place)
 
     def __unicode__(self):
         return self.tag
