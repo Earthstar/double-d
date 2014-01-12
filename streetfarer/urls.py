@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from pathgenerator.views import map_page
+from pathgenerator.views import map_page, mapsearch_page
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -7,6 +7,7 @@ from pathgenerator.views import map_page
 
 urlpatterns = patterns('',
     url(r'^map/$', map_page),
+    url(r'^map/search/$', mapsearch_page),
     # Examples:
     # url(r'^$', 'streetfarer.views.home', name='home'),
     # url(r'^streetfarer/', include('streetfarer.foo.urls')),

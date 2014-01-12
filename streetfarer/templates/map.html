@@ -10,11 +10,12 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqpj_Y8RgA3K-2iwOfUXAZ3R3fr24_PLU&sensor=true">
     </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
     <script type="text/javascript">
       function initialize() {
         var mapOptions = {
           center: new google.maps.LatLng(42.356448, -71.108212),
-          zoom: 8
+          zoom: 16
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);

@@ -8,3 +8,7 @@ def map_page(request):
 	t = get_template('map.html')
 	html = t.render(Context({}))
 	return HttpResponse(html)
+def mapsearch_page(request):
+	t = get_template('map_search.html')
+	html = t.render(Context({}))
+	return HttpResponse(html)
