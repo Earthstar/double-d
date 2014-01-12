@@ -9,8 +9,12 @@ class Place(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     # Only looking at string-formatted address for now
-    address = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
+    address = models.TextField()
+    name = models.TextField()
+    # Use this to store total data, ex the Json from Google API
+    # Just in case we need to extract another field for the DB
+    raw_data = models.TextField()
+
 
 
     def __unicode__(self):
@@ -24,7 +28,7 @@ class Tag:
     Represents a feature of a place.
     Each tag may belong to multiple places and vice versa
     '''
-    tag = models.CharField(max_length=255)
+    tag = models.TextField()
     place = models.ManyToManyField(Place)
 
     def __unicode__(self):
