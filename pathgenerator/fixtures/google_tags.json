@@ -1,0 +1,770 @@
+[
+  {
+    "pk": 100,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "accounting",
+      "places": []
+    }
+  },
+  {
+    "pk": 101,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "airport",
+      "places": []
+    }
+  },
+  {
+    "pk": 102,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "amusement_park",
+      "places": []
+    }
+  },
+  {
+    "pk": 103,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "aquarium",
+      "places": []
+    }
+  },
+  {
+    "pk": 104,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "art_gallery",
+      "places": []
+    }
+  },
+  {
+    "pk": 105,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "atm",
+      "places": []
+    }
+  },
+  {
+    "pk": 106,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bakery",
+      "places": []
+    }
+  },
+  {
+    "pk": 107,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bank",
+      "places": []
+    }
+  },
+  {
+    "pk": 108,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bar",
+      "places": []
+    }
+  },
+  {
+    "pk": 109,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "beauty_salon",
+      "places": []
+    }
+  },
+  {
+    "pk": 110,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bicycle_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 111,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "book_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 112,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bowling_alley",
+      "places": []
+    }
+  },
+  {
+    "pk": 113,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "bus_station",
+      "places": []
+    }
+  },
+  {
+    "pk": 114,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "cafe",
+      "places": []
+    }
+  },
+  {
+    "pk": 115,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "campground",
+      "places": []
+    }
+  },
+  {
+    "pk": 116,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "car_dealer",
+      "places": []
+    }
+  },
+  {
+    "pk": 117,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "car_rental",
+      "places": []
+    }
+  },
+  {
+    "pk": 118,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "car_repair",
+      "places": []
+    }
+  },
+  {
+    "pk": 119,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "car_wash",
+      "places": []
+    }
+  },
+  {
+    "pk": 120,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "casino",
+      "places": []
+    }
+  },
+  {
+    "pk": 121,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "cemetery",
+      "places": []
+    }
+  },
+  {
+    "pk": 122,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "church",
+      "places": []
+    }
+  },
+  {
+    "pk": 123,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "city_hall",
+      "places": []
+    }
+  },
+  {
+    "pk": 124,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "clothing_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 125,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "convenience_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 126,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "courthouse",
+      "places": []
+    }
+  },
+  {
+    "pk": 127,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "dentist",
+      "places": []
+    }
+  },
+  {
+    "pk": 128,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "department_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 129,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "doctor",
+      "places": []
+    }
+  },
+  {
+    "pk": 130,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "electrician",
+      "places": []
+    }
+  },
+  {
+    "pk": 131,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "electronics_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 132,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "embassy",
+      "places": []
+    }
+  },
+  {
+    "pk": 133,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "establishment",
+      "places": []
+    }
+  },
+  {
+    "pk": 134,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "finance",
+      "places": []
+    }
+  },
+  {
+    "pk": 135,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "fire_station",
+      "places": []
+    }
+  },
+  {
+    "pk": 136,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "florist",
+      "places": []
+    }
+  },
+  {
+    "pk": 137,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "food",
+      "places": []
+    }
+  },
+  {
+    "pk": 138,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "funeral_home",
+      "places": []
+    }
+  },
+  {
+    "pk": 139,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "furniture_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 140,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "gas_station",
+      "places": []
+    }
+  },
+  {
+    "pk": 141,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "general_contractor",
+      "places": []
+    }
+  },
+  {
+    "pk": 142,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "grocery_or_supermarket",
+      "places": []
+    }
+  },
+  {
+    "pk": 143,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "gym",
+      "places": []
+    }
+  },
+  {
+    "pk": 144,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "hair_care",
+      "places": []
+    }
+  },
+  {
+    "pk": 145,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "hardware_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 146,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "health",
+      "places": []
+    }
+  },
+  {
+    "pk": 147,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "hindu_temple",
+      "places": []
+    }
+  },
+  {
+    "pk": 148,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "home_goods_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 149,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "hospital",
+      "places": []
+    }
+  },
+  {
+    "pk": 150,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "insurance_agency",
+      "places": []
+    }
+  },
+  {
+    "pk": 151,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "jewelry_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 152,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "laundry",
+      "places": []
+    }
+  },
+  {
+    "pk": 153,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "lawyer",
+      "places": []
+    }
+  },
+  {
+    "pk": 154,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "library",
+      "places": []
+    }
+  },
+  {
+    "pk": 155,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "liquor_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 156,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "local_government_office",
+      "places": []
+    }
+  },
+  {
+    "pk": 157,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "locksmith",
+      "places": []
+    }
+  },
+  {
+    "pk": 158,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "lodging",
+      "places": []
+    }
+  },
+  {
+    "pk": 159,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "meal_delivery",
+      "places": []
+    }
+  },
+  {
+    "pk": 160,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "meal_takeaway",
+      "places": []
+    }
+  },
+  {
+    "pk": 161,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "mosque",
+      "places": []
+    }
+  },
+  {
+    "pk": 162,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "movie_rental",
+      "places": []
+    }
+  },
+  {
+    "pk": 163,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "movie_theater",
+      "places": []
+    }
+  },
+  {
+    "pk": 164,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "moving_company",
+      "places": []
+    }
+  },
+  {
+    "pk": 165,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "museum",
+      "places": []
+    }
+  },
+  {
+    "pk": 166,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "night_club",
+      "places": []
+    }
+  },
+  {
+    "pk": 167,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "painter",
+      "places": []
+    }
+  },
+  {
+    "pk": 168,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "park",
+      "places": []
+    }
+  },
+  {
+    "pk": 169,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "parking",
+      "places": []
+    }
+  },
+  {
+    "pk": 170,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "pet_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 171,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "pharmacy",
+      "places": []
+    }
+  },
+  {
+    "pk": 172,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "physiotherapist",
+      "places": []
+    }
+  },
+  {
+    "pk": 173,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "place_of_worship",
+      "places": []
+    }
+  },
+  {
+    "pk": 174,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "plumber",
+      "places": []
+    }
+  },
+  {
+    "pk": 175,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "police",
+      "places": []
+    }
+  },
+  {
+    "pk": 176,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "post_office",
+      "places": []
+    }
+  },
+  {
+    "pk": 177,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "real_estate_agency",
+      "places": []
+    }
+  },
+  {
+    "pk": 178,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "restaurant",
+      "places": []
+    }
+  },
+  {
+    "pk": 179,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "roofing_contractor",
+      "places": []
+    }
+  },
+  {
+    "pk": 180,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "rv_park",
+      "places": []
+    }
+  },
+  {
+    "pk": 181,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "school",
+      "places": []
+    }
+  },
+  {
+    "pk": 182,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "shoe_store",
+      "places": []
+    }
+  },
+  {
+    "pk": 183,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "shopping_mall",
+      "places": []
+    }
+  },
+  {
+    "pk": 184,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "spa",
+      "places": []
+    }
+  },
+  {
+    "pk": 185,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "stadium",
+      "places": []
+    }
+  },
+  {
+    "pk": 186,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "storage",
+      "places": []
+    }
+  },
+  {
+    "pk": 187,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "store",
+      "places": []
+    }
+  },
+  {
+    "pk": 188,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "subway_station",
+      "places": []
+    }
+  },
+  {
+    "pk": 189,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "synagogue",
+      "places": []
+    }
+  },
+  {
+    "pk": 190,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "taxi_stand",
+      "places": []
+    }
+  },
+  {
+    "pk": 191,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "train_station",
+      "places": []
+    }
+  },
+  {
+    "pk": 192,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "travel_agency",
+      "places": []
+    }
+  },
+  {
+    "pk": 193,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "university",
+      "places": []
+    }
+  },
+  {
+    "pk": 194,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "veterinary_care",
+      "places": []
+    }
+  },
+  {
+    "pk": 195,
+    "model": "pathgenerator.tag",
+    "fields": {
+      "tag": "zoo",
+      "places": []
+    }
+  }
+]
