@@ -25,10 +25,10 @@ class Place(models.Model):
     address = models.TextField()
     name = models.TextField()
     # Use this field to store Google's reference value
-    google_reference = models.TextField()
+    google_reference = models.TextField(blank=True)
     # Use this to store total data, ex the Json from Google API
     # Just in case we need to extract another field for the DB
-    raw_data = models.TextField()
+    raw_data = models.TextField(blank=True)
 
     def __unicode__(self):
         '''
@@ -66,7 +66,7 @@ class Path(models.Model):
     name = models.TextField()
     places = models.ManyToManyField(Place)
     # The json which is returned when Google routes a path
-    json = models.TextField()
+    json = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.name
