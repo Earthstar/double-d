@@ -1,0 +1,97 @@
+<DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+    <script>
+var map;
+var infowindow;
+
+function initialize() {
+  print "HI!";
+  var cambridge  = new google.maps.LatLng(42.356448, -71.108212);
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    center: cambridge,
+    zoom: 15
+  });
+
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay.setMap(map);
+
+  var request = {
+    location: cambridge,
+    radius: 2200,
+    types: ['park']
+  };
+  infowindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+}
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+     var waypoints = new Array();
+     var length = results.length();
+     for(int i = 0; i<3; i++){
+        var ran = Math.random()*length;
+	createMarker(results[ran]);
+	waypoints[i]=new google.maps.directions.DirectionsWaypoint(results[ran].geometry.location);
+	results.splice(ran, 1);
+	length--;
+     }
+     calcRoute(waypoints);
+    
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: placeLoc
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
+
+function calcRoute(waypoints) {
+  var start = cambridge;
+  var end = cambridge;
+  var request = {
+      origin:start,
+      destination:end,
+      waypoints[]:waypoints,
+      travelMode: google.maps.TravelMode.WALKING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas" style="width: 80%; float:center"></div>
+  </body>
+</html>
+
+
+
