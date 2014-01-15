@@ -15,10 +15,11 @@
     <script>
 var map;
 var infowindow;
+var directionsService = new google.maps.DirectionsService();
+var cambridge;
 
 function initialize() {
-  print "HI!";
-  var cambridge  = new google.maps.LatLng(42.356448, -71.108212);
+  cambridge  = new google.maps.LatLng(42.356448, -71.108212);
 
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: cambridge,
@@ -41,16 +42,16 @@ function initialize() {
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
      var waypoints = new Array();
-     var length = results.length();
-     for(int i = 0; i<3; i++){
-        var ran = Math.random()*length;
-	createMarker(results[ran]);
-	waypoints[i]=new google.maps.directions.DirectionsWaypoint(results[ran].geometry.location);
-	results.splice(ran, 1);
-	length--;
+     var length = results.length;
+     console.log("Length: "+length);
+     for(var i = 0; i<3; i++){
+        var ran = Math.floor(Math.random()*length);
+	      createMarker(results[ran]);
+	      waypoints.push({location:results[ran].geometry.location, stopover:true});
+	      results.splice(ran, 1);
+	      length--;
      }
      calcRoute(waypoints);
-    
   }
 }
 
@@ -67,13 +68,14 @@ function createMarker(place) {
   });
 }
 
-function calcRoute(waypoints) {
+function calcRoute(points) {
+  console.log("Hello, there!");
   var start = cambridge;
   var end = cambridge;
   var request = {
       origin:start,
       destination:end,
-      waypoints[]:waypoints,
+      waypoints:points,
       travelMode: google.maps.TravelMode.WALKING
   };
   directionsService.route(request, function(response, status) {
@@ -89,7 +91,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
-    <div id="map-canvas" style="width: 80%; float:center"></div>
+    <div id="map-canvas" style="width: 80%"></div>
   </body>
 </html>
 
