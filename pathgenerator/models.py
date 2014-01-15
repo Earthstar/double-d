@@ -73,6 +73,18 @@ class Path(models.Model):
         return self.name
 
 class UserForm(ModelForm):
+    '''
+    A form linked to a user.
+    Automatically creates a form with 3 fields.
+    To use:
+    form = UserForm()
+    return render(request, 'adduser.html', {'form': form})
+
+    In the template file, you can just have:
+    {{form}}
+
+    Note that django requires the field {% csrf_token %} to be in the form
+    '''
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
