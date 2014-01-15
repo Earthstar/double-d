@@ -8,6 +8,8 @@ from streetfarer.views import add_user, secret, logout_page
 # from django.contrib import admin
 # admin.autodiscover()
 
+# Might want to change login and logout url?
+
 urlpatterns = patterns('',
     url(r'^map/$', map_page),
     url(r'^map/search/$', mapsearch_page),

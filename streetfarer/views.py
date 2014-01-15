@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect, HttpResponse
@@ -42,15 +43,13 @@ def add_user(request):
 
     return render(request, 'adduser.html', {'form': form})
 
-# todo use decorator
+# This decorator automatically directs user to the login page
+# You can direct the user to the page they were trying to visit by using the 'next' parameter
+@login_required
 def secret(request):
-    if request.user.is_authenticated():
-        user = request.user
-        t = get_template('secret.html')
-        html = t.render(Context({'user': user}))
-    else:
-        t = get_template('index.html')
-        html = t.render(Context({}))
+    user = request.user
+    t = get_template('secret.html')
+    html = t.render(Context({'user': user}))
     return HttpResponse(html)
 
 def logout_page(request):
