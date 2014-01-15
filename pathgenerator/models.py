@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
+from django.forms import ModelForm
 from django.db import models
-from ordered_model.models import OrderedModel
 
 
 # There is a "proper" way to add a field, but it's more complicated
@@ -70,3 +71,8 @@ class Path(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
