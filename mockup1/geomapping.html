@@ -1,0 +1,18 @@
+<div class="col-xs-6 col-sm-6">
+    <address id="address">
+        <strong>{{ customer.name }}</strong><br>
+        {% if customer.address1 %}
+            {{ customer.address1 }}<br>
+        {% endif %}
+        {% if customer.address2 %}
+            {{ customer.address2 }}<br>
+        {% endif %}
+        {% if customer.address3 %}
+            {{ customer.address3 }}<br>
+        {% endif %}
+        {{ customer.city }}, {{ customer.state_province }} {{ customer.postal_code }}<br>
+        {{ customer.country }}<br>
+    </address>
+    <a id="map-message" href="{% url "customers.views.customer_edit" customer.customer_number %}" class="hidden btn btn-warning btn-xs">Google was unable to locate this address. Please verify it.</a>
+    <div id="map-canvas"></div>
+</div>
