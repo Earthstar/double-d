@@ -58,3 +58,8 @@ def logout_page(request):
     """
     logout(request)
     return HttpResponseRedirect('/')
+
+def harmony(request):
+    t = get_template('harmony.html')
+    html = t.render(Context({'title': "Django Title"}))
+    return HttpResponse(html)
