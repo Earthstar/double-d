@@ -63,3 +63,8 @@ def harmony(request):
     t = get_template('harmony.html')
     html = t.render(Context({'title': "Django Title"}))
     return HttpResponse(html)
+
+def mockup(request):
+    t = get_template('mockup.html')
+    html = t.render(Context({}))
+    return HttpResponse(html)
