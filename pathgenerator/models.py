@@ -39,7 +39,7 @@ class Place(models.Model):
         '''
         What gets displayed when you print the place.
         '''
-        return '{0}, {1}'.format(str(self.name) + str(self.address))
+        return '{0}, {1}'.format(str(self.name), str(self.address))
 
     def is_same_place(self, place):
         '''

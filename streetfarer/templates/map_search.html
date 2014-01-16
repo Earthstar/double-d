@@ -16,7 +16,7 @@
       <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
     {% load staticfiles %}
-
+    <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
     {% csrf_token %}
     <script>
     var map;
@@ -84,6 +84,7 @@
          var waypoints = new Array();
          var length = results.length;
          console.log(results);
+         // console.log(JSON.stringify(results[0]))
          cachePlaces(results);
          //waypoints.push({optimize:true});
          for(var i = 0; i<3; i++){
@@ -97,14 +98,20 @@
     }
 
     function cachePlaces(points){
-      console.log(points)
+      // points is a list of objects which we need to turn into json strings
+      // Is there a better way?
+      // console.log(points);
+      var points_json = JSON.stringify(points)
+      console.log(points_json)
+      // for (var i = 0; i < points.length; i++) {
+      //   points_json.push(JSON.stringify(points));
+      // }
+      // console.log(points_json);
       $.ajax({
         type: 'POST',
         url: '/saveplace/',
-        data: {'results[]': points},
+        data: {'results[]': points_json},
       });
-      // $.ajax({type: 'POST',
-      // url: '/ajaxtest/'});
     }
 
     function calcRoute(points) {
@@ -127,10 +134,10 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
-       </script>
-      </head>
-      <body>
-        <div id="map-canvas" style="width: 80%"></div>
-      </body>
-    </html>
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas" style="width: 80%"></div>
+  </body>
+</html>
 
