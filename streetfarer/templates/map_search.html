@@ -1,3 +1,5 @@
+
+
 <DOCTYPE html>
 <html>
   <head>
@@ -11,89 +13,124 @@
         padding: 0px
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    {% load staticfiles %}
+
+    {% csrf_token %}
     <script>
-var map;
-var infowindow;
-var directionsService = new google.maps.DirectionsService();
-var cambridge;
+    var map;
+    var infowindow;
+    var directionsService = new google.maps.DirectionsService();
+    var cambridge;
 
-function initialize() {
-  cambridge  = new google.maps.LatLng(42.356448, -71.108212);
-
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center: cambridge,
-    zoom: 15
-  });
-
-  directionsDisplay = new google.maps.DirectionsRenderer();
-  directionsDisplay.setMap(map);
-
-  var request = {
-    location: cambridge,
-    radius: 2200,
-    types: ['park']
-  };
-  infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
-}
-
-function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-     var waypoints = new Array();
-     var length = results.length;
-     console.log("Length: "+length);
-     for(var i = 0; i<3; i++){
-        var ran = Math.floor(Math.random()*length);
-	      createMarker(results[ran]);
-	      waypoints.push({location:results[ran].geometry.location, stopover:true});
-	      results.splice(ran, 1);
-	      length--;
-     }
-     calcRoute(waypoints);
-  }
-}
-
-function createMarker(place) {
-  var placeLoc = place.geometry.location;
-  var marker = new google.maps.Marker({
-    map: map,
-    position: placeLoc
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
-}
-
-function calcRoute(points) {
-  console.log("Hello, there!");
-  var start = cambridge;
-  var end = cambridge;
-  var request = {
-      origin:start,
-      destination:end,
-      waypoints:points,
-      travelMode: google.maps.TravelMode.WALKING
-  };
-  directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+    // CSRF stuff using jQuery
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
-  });
-}
+
+    var csrftoken = getCookie('csrftoken');
+    console.log(csrftoken)
+
+    function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    function initialize() {
+      cambridge  = new google.maps.LatLng(42.356448, -71.108212);
+
+      map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: cambridge,
+        zoom: 15
+      });
+
+      directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(map);
+
+      var request = {
+        location: cambridge,
+        radius: 2200,
+        types: ['park']
+      };
+      infowindow = new google.maps.InfoWindow();
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, callback);
+    }
+
+    function callback(results, status) {
+      // results is a list of PlaceResult objects
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+         var waypoints = new Array();
+         var length = results.length;
+         console.log(results);
+         cachePlaces(results);
+         //waypoints.push({optimize:true});
+         for(var i = 0; i<3; i++){
+           var ran = Math.floor(Math.random()*length);
+                  waypoints.push({location:results[ran].geometry.location, stopover:true});
+                  results.splice(ran, 1);
+                  length--;
+        }
+        calcRoute(waypoints);
+     }
+    }
+
+    function cachePlaces(points){
+      console.log(points)
+      $.ajax({
+        type: 'POST',
+        url: '/saveplace/',
+        data: {'results[]': points},
+      });
+      // $.ajax({type: 'POST',
+      // url: '/ajaxtest/'});
+    }
+
+    function calcRoute(points) {
+     console.log("Hello, there!");
+     var start = cambridge;
+     var end = cambridge;
+     var request = {
+         origin:start,
+         destination:end,
+         waypoints:points,
+         travelMode: google.maps.TravelMode.WALKING
+     };
+     directionsService.route(request, function(response, status) {
+       if (status == google.maps.DirectionsStatus.OK) {
+         directionsDisplay.setDirections(response);
+       }
+     });
+    }
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize);
 
-    </script>
-  </head>
-  <body>
-    <div id="map-canvas" style="width: 80%"></div>
-  </body>
-</html>
-
-
+       </script>
+      </head>
+      <body>
+        <div id="map-canvas" style="width: 80%"></div>
+      </body>
+    </html>
 

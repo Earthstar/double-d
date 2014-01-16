@@ -19,14 +19,18 @@ class Place(models.Model):
     A Place has a latitude, longitude, an address, a name, and tags
     Not implementing events
     Not sure if case matters
+    TODO: add ratings
     '''
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     # Only looking at string-formatted address for now
     address = models.TextField()
     name = models.TextField()
+    # where we got the place data. ex 'google', 'opensource', 'user', etc.
+    source = models.TextField(blank=True)
     # Use this field to store Google's reference value
     google_reference = models.TextField(blank=True)
+    google_id = models.TextField(blank=True)
     # Use this to store total data, ex the Json from Google API
     # Just in case we need to extract another field for the DB
     raw_data = models.TextField(blank=True)
@@ -36,6 +40,20 @@ class Place(models.Model):
         What gets displayed when you print the place.
         '''
         return '{0}, {1}'.format(str(self.name) + str(self.address))
+
+    def is_same_place(self, place):
+        '''
+        Returns True if places are the same. Returns false otherwise.
+        place is a Place object.
+        '''
+        if self.google_id == place.google_id:
+            return True
+        elif self.google_reference == place.google_reference:
+            return True
+        elif (self.latitude == place.latitude) and (self.longitude == place.longitude):
+            return True
+        else:
+            return False
 
 class Tag(models.Model):
     '''
