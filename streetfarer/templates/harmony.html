@@ -3,6 +3,16 @@
 <head>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+  <script>
+    $(function() {
+      var source = $('#entry-template').html();
+      var template = Handlebars.compile(source);
+      var context = {element1: 'foo', element2: 'bar'};
+      var html = template(context);
+      console.log(html);
+      $('#list').append(html);
+    });
+  </script>
 </head>
 <body>
   <h1>{{title}}</h1>
@@ -15,13 +25,5 @@
       <li>{{element2}}</li>
 
   {% endverbatim %}
-  </script>
-  <script>
-    var source = $('#entry-template').html();
-    var template = Handlebars.compile(source);
-    var context = {element1: 'foo', element2: 'bar'};
-    var html = template(context);
-    console.log(html);
-    $('#list').append(html);
   </script>
 </html>
