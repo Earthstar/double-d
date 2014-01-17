@@ -7,7 +7,7 @@ from django.db import models
 # See: http://www.djangobook.com/en/2.0/chapter10.html
 # section Making Changes to a Database Schema
 # drops all tables. Useful if you've added a field to a model
-# python manage.py sqlclear pathgenerator | python manage.py dbshell
+# ./manage.py sqlclear pathgenerator | ./manage.py dbshell
 
 # Users can store many Paths (which can be shared?)
 # Each path contains a list of Places and a name
@@ -20,6 +20,8 @@ class Place(models.Model):
     Not implementing events
     Not sure if case matters
     TODO: add ratings
+
+    Can create a place thru a user?
     '''
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
@@ -71,21 +73,21 @@ class Tag(models.Model):
 class Path(models.Model):
     '''
     Represents an ordered list of places that make a path.
-    Django models automatically get an autoincrementing id field
-    which is created when you save the model.
+    Eac path belongs to only one user. If two users "share" a path,
+    you need to add
     Use that?
     To find a particular path, use the id field
     path = Path.objects.get(id=1)
     To get all the places on a path,
     places = path.places.all()
-    To get the ordering of places, filter PlaceOrdering
-    PlaceOrdering.objects.filter(path_id__exact=1, place_id__exact=1)
-    Is there a better way of doing this?
+
     '''
     name = models.TextField()
     places = models.ManyToManyField(Place)
     # The json which is returned when Google routes a path
     json = models.TextField(blank=True)
+    # The user who owns a path. many-to-one relationship with User
+    user = models.ForeignKey(User, blank=True)
 
     def __unicode__(self):
         return self.name
