@@ -12,13 +12,14 @@ Map Search
 {% block css %}
 
 <style>
-  html, body, #map-canvas {
-    height: 90%;
+  #map-canvas {
+    height: 60vh; /*Use vh instead of % so we can use this in container*/
     width: 100%;
     margin: 0px;
     padding: 0px
   }
 </style>
+
 
 {% endblock css %}
 
@@ -147,10 +148,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 {% endblock scripts %}
 
-{# {% block header %} #}
-{# Something about the header is preventing the map from showing up #}
-{# {% endblock header %} #}
-
 {% block map %}
-  <div id="map-canvas" style="width: 80%"></div>
+
+  <div class="container"> {# The container class magically adjusts width #}
+    <div id="map-canvas" ></div>
+  </div>
+
 {% endblock map %}
