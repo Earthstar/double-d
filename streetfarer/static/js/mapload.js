@@ -2,8 +2,13 @@ var map;
 var infowindow;
 var directionsService = new google.maps.DirectionsService();
 var placesService;
-var cambridge;
 var DISTANCE_CONSTANT = 2.6*3.14159;
+
+// Inputs for map generation, should be changed upon genRoute
+var start = new google.maps.LatLng(0, 0);
+var distance = 0;
+var tags = [];
+
 
 // CSRF stuff using jQuery
 function getCookie(name) {
@@ -53,7 +58,14 @@ function initialize() {
   genRoute(cambridge, 5000, ['park', 'restaurant', 'cafe']);
 }
 
-function genRoute(start, distance, tags) {
+
+function genRoute(startParam, distanceParam, tagsParam) {
+  if(startParam != null)
+    start = startParam;
+  if(distanceParam != null)
+    distance = distanceParam;
+  if(tagsParam != null)
+    tags = tagsParam;
   var modDist = distance/DISTANCE_CONSTANT;
   var request = {
     location: start,
@@ -101,11 +113,9 @@ function cachePlaces(points){
 
 function calcRoute(points) {
  console.log("Hello, there!");
- var start = cambridge;
- var end = cambridge;
  var request = {
      origin:start,
-     destination:end,
+     destination:start,
      waypoints:points,
      optimizeWaypoints:true,
      travelMode: google.maps.TravelMode.WALKING
