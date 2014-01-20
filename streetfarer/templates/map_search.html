@@ -27,27 +27,6 @@ Streetfinder Map Search
 {% csrf_token %}
 <script src={% static "js/mapload.js" %}></script>
 
-<script>
-  //Keep track of last click event. Poll every 2 seconds or so to see if user has stopped clicking buttons
-
-  $(".place-tag").click(function() {
-    $("#clickcounter").text($.now());
-  });
-
-  setInterval(function(){
-    var lastClick = parseInt($("#clickcounter").text());
-    // if the user is not actively clicking tags, then regenerate the map
-    if (($.now() - lastClick) > 2000) {
-
-    }
-  }, 2000)
-
-  // Function regenerates the map based on clicked tags
-  function regenerateMap() {
-  }
-
-</script>
-
 {% endblock page_scripts %}
 
 {% block map %}
@@ -66,7 +45,4 @@ Streetfinder Map Search
       <button class="btn btn-primary btn-lg place-tag" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
     {% endfor %}
   </div>
-
-{# Hidden element to keep track of last clickhttp://www.eyecon.ro/bootstrap-slider/ #}
-<div id="clickcounter" hidden>0</div>
 {% endblock tags %}
