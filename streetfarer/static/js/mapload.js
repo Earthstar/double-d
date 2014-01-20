@@ -1,7 +1,7 @@
 var map;
 var infowindow;
 var directionsService = new google.maps.DirectionsService();
-var placesService = new google.maps.places.PlacesService(map);
+var placesService;
 var cambridge;
 var DISTANCE_CONSTANT = 2.6*3.14159;
 
@@ -49,7 +49,8 @@ function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
   infowindow = new google.maps.InfoWindow();
-  genRoute(cambridge, 2200, ['parks']);
+  placesService = new google.maps.places.PlacesService(map);
+  genRoute(cambridge, 5000, ['park', 'restaurant', 'cafe']);
 }
 
 function genRoute(start, distance, tags) {
@@ -57,24 +58,29 @@ function genRoute(start, distance, tags) {
   var request = {
     location: start,
     radius: modDist,
-    types: tags
+    types: tags,
   };
-  placesService.nearbySearch(request, callback)
+  placesService.nearbySearch(request, callback);
 }
 
 function callback(results, status) {
+  console.log(status);
   // results is a list of PlaceResult objects
   if (status == google.maps.places.PlacesServiceStatus.OK) {
+    console.log("blargh");
      var waypoints = new Array();
      var length = results.length;
      console.log(results);
      // console.log(JSON.stringify(results[0]))
      cachePlaces(results);
      for(var i = 0; i<8; i++){
-       var ran = Math.floor(Math.random()*length);
-              waypoints.push({location:results[ran].geometry.location, stopover:true});
-              results.splice(ran, 1);
-              length--;
+
+        var ran = Math.floor(Math.random()*length);
+        waypoints.push({location:results[ran].geometry.location, stopover:true});
+        results.splice(ran, 1);
+        length--;
+        if(length==0)
+          break;
     }
     calcRoute(waypoints);
  }
@@ -89,7 +95,6 @@ function cachePlaces(points){
   $.ajax({
     type: 'POST',
     url: '/saveplace/',
-    optimizeWaypoints:true,
     data: {'results[]': points_json},
   });
 }
@@ -102,6 +107,7 @@ function calcRoute(points) {
      origin:start,
      destination:end,
      waypoints:points,
+     optimizeWaypoints:true,
      travelMode: google.maps.TravelMode.WALKING
  };
  directionsService.route(request, function(response, status) {
