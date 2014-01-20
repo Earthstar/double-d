@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login
-
+from django.conf import settings
+from django.conf.urls.static import static
 from pathgenerator.views import map_page, mapsearch_page, get_place_list, ajaxtest
 from streetfarer.views import add_user, secret, logout_page, harmony, mockup
 
@@ -33,4 +34,4 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
