@@ -1,6 +1,7 @@
 var map;
 var infowindow;
 var directionsService = new google.maps.DirectionsService();
+var placesService = new google.maps.places.PlacesService(map);
 var cambridge;
 var DISTANCE_CONSTANT = 2.6*3.14159;
 
@@ -48,7 +49,6 @@ function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
   infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
   genRoute(cambridge, 2200, ['parks']);
 }
 
@@ -59,7 +59,7 @@ function genRoute(start, distance, tags) {
     radius: modDist,
     types: tags
   };
-  service.nearbySearch(request, callback)
+  placesService.nearbySearch(request, callback)
 }
 
 function callback(results, status) {
