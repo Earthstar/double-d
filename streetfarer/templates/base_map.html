@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 
+{% block section_scripts %}
+{# Scripts that belong with a section go here #}
+<script></script>
+
+{% block page_scripts %}
+{% endblock page_scripts %}
+{% endblock section_scripts %}
+
+{% block section_css %}
+{% block page_css %}
+{% endblock page_css %}
+{% endblock section_css %}
+
 {% block content %}
-
 {% block distance_indicator %}
-
 {% endblock distance_indicator %}
-
 {% block map %}
-
 {% endblock map %}
-
 {% block tags %}
-
 {% endblock tags %}
-
 {% endblock content %}

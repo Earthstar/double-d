@@ -9,7 +9,7 @@ Streetfinder Map Search
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 {% endblock meta %}
 
-{% block css %}
+{% block page_css %}
 <style>
   #map-canvas {
     height: 60vh; /*Use vh instead of % so we can use this in container*/
@@ -18,18 +18,16 @@ Streetfinder Map Search
     padding: 0px
   }
 </style>
-{% endblock css %}
+{% endblock page_css %}
 
-{% block scripts %}
+{% block page_scripts %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
 <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
 {% csrf_token %}
-<script src={% static "mapload.js" %}></script>
-=======
+<script src={% static "js/mapload.js" %}></script>
+
 <script>
-
-
   //Keep track of last click event. Poll every 2 seconds or so to see if user has stopped clicking buttons
 
   $(".place-tag").click(function() {
@@ -46,13 +44,11 @@ Streetfinder Map Search
 
   // Function regenerates the map based on clicked tags
   function regenerateMap() {
-
   }
-})
 
 </script>
 
-{% endblock scripts %}
+{% endblock page_scripts %}
 
 {% block map %}
 
@@ -71,6 +67,6 @@ Streetfinder Map Search
     {% endfor %}
   </div>
 
-{# Hidden element to keep track of last click #}
+{# Hidden element to keep track of last clickhttp://www.eyecon.ro/bootstrap-slider/ #}
 <div id="clickcounter" hidden>0</div>
 {% endblock tags %}
