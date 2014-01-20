@@ -1,8 +1,8 @@
 {% extends "base_map.html" %}
-
+{% load staticfiles %}
 
 {% block title %}
-Map Search
+Streetfinder Map Search
 {% endblock title %}
 
 {% block meta %}
@@ -10,7 +10,6 @@ Map Search
 {% endblock meta %}
 
 {% block css %}
-
 <style>
   #map-canvas {
     height: 60vh; /*Use vh instead of % so we can use this in container*/
@@ -19,17 +18,40 @@ Map Search
     padding: 0px
   }
 </style>
-
-
 {% endblock css %}
 
 {% block scripts %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
-{% load staticfiles %}
 <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
 {% csrf_token %}
 <script src={% static "mapload.js" %}></script>
+=======
+<script>
+
+
+  //Keep track of last click event. Poll every 2 seconds or so to see if user has stopped clicking buttons
+
+  $(".place-tag").click(function() {
+    $("#clickcounter").text($.now());
+  });
+
+  setInterval(function(){
+    var lastClick = parseInt($("#clickcounter").text());
+    // if the user is not actively clicking tags, then regenerate the map
+    if (($.now() - lastClick) > 2000) {
+
+    }
+  }, 2000)
+
+  // Function regenerates the map based on clicked tags
+  function regenerateMap() {
+
+  }
+})
+
+</script>
+
 {% endblock scripts %}
 
 {% block map %}
@@ -39,3 +61,16 @@ Map Search
   </div>
 
 {% endblock map %}
+
+{% block tags %}
+{# Add a whole bunch of buttons #}
+  <div class="container tag-container" data-toggle="buttons">
+    {% for tag in tag_list %}
+    {# Note that if button is active, it will have an "active" class #}
+      <button class="btn btn-primary btn-lg place-tag" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
+    {% endfor %}
+  </div>
+
+{# Hidden element to keep track of last click #}
+<div id="clickcounter" hidden>0</div>
+{% endblock tags %}
