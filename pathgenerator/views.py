@@ -21,7 +21,7 @@ def mapsearch_page(request):
     c.update(csrf(request))
     return render_to_response('map_search.html', c)
 
-def get_place_list(request):
+def place(request):
     if request.method == 'POST':
         # this is a list of strings with one element
         place_string = request.POST.get('results[]')
@@ -56,5 +56,11 @@ def process_place_json(place_string):
                 raw_data=json.dumps(place, separators=(',',':')),
                 )
 
-def ajaxtest(request):
-    return HttpResponse('success')
+# Json format contains
+# start, end - which are google latlon
+# waypointIDs - strings that should correspond to an existing Place
+def path(request):
+    if request.method == "GET":
+        return HttpResponse('Not implemented yet')
+    if request.method== "POST":
+        return HttpResponse('success')
