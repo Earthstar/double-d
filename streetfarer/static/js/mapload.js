@@ -10,6 +10,7 @@ $(function() {
   var distance = 0;
   var tags = [];
 
+  var pathPlaceIds = [] //used to store the ids of places in stored paths
 
   // CSRF stuff using jQuery
   function getCookie(name) {
@@ -80,21 +81,20 @@ $(function() {
     console.log(status);
     // results is a list of PlaceResult objects
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      console.log("blargh");
        var waypoints = new Array();
        var length = results.length;
-       console.log(results);
-       // console.log(JSON.stringify(results[0]))
        cachePlaces(results);
        for(var i = 0; i<8; i++){
-
           var ran = Math.floor(Math.random()*length);
-          waypoints.push({location:results[ran].geometry.location, stopover:true});
+          var randomPlace = results[ran];
+          pathPlaceIds.push(randomPlace.id)
+          waypoints.push({location:randomPlace.geometry.location, stopover:true});
           results.splice(ran, 1);
           length--;
           if(length==0)
             break;
       }
+      console.log(pathPlaceIds);
       calcRoute(waypoints);
    }
   }
@@ -104,7 +104,6 @@ $(function() {
     // Is there a better way?
     // console.log(points);
     var points_json = JSON.stringify(points)
-    console.log(points_json)
     $.ajax({
       type: 'POST',
       url: '/saveplace/',
@@ -112,8 +111,13 @@ $(function() {
     });
   }
 
+  // directionResponse is a Google DirectionResponse object
+  function cachePath(directionResponse) {
+    // Caches a path object in our database
+    // Reminder: clear pathPlaceIds
+  }
+
   function calcRoute(points) {
-   console.log("Hello, there!");
    var request = {
        origin:start,
        destination:start,
@@ -123,7 +127,17 @@ $(function() {
    };
    directionsService.route(request, function(response, status) {
      if (status == google.maps.DirectionsStatus.OK) {
-       directionsDisplay.setDirections(response);
+      // console.log("response")
+      // console.log(response)
+      // objToString(response)
+      // path = JSON.stringify(response)
+      // // console.log("path")
+      // // console.log(path)
+      // object = JSON.parse(path)
+      // console.log("parsed path")
+      // console.log(object)
+
+      directionsDisplay.setDirections(response);
      }
    });
   }
@@ -142,6 +156,11 @@ $(function() {
    // Attach a click listener to refresh-map button
   $("#refresh-map").click(function() {
     genRoute(null, null, getActiveTags());
+  });
+
+    //Need to save path
+  $("#save-path").click(function() {
+
   })
 
 })

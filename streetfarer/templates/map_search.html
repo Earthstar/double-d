@@ -7,6 +7,7 @@ Streetfinder Map Search
 
 {% block meta %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+{% csrf_token %}
 {% endblock meta %}
 
 {% block page_css %}
@@ -22,18 +23,16 @@ Streetfinder Map Search
 
 {% block page_scripts %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-
 <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
-{% csrf_token %}
 <script src={% static "js/mapload.js" %}></script>
 {% endblock page_scripts %}
 
 {% block map %}
   <button class="" id="refresh-map">Refresh map</button>
+  <button id="save-path">Save path</button>
   <div class="container"> {# The container class magically adjusts width #}
     <div id="map-canvas"></div>
   </div>
-
 {% endblock map %}
 
 {% block tags %}
