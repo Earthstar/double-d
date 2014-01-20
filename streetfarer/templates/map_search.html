@@ -141,7 +141,7 @@ $(function() {
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-  // Need to maintain a list of tags
+  // Need to maintain a list of tags. What's the best way to do this? List?
 
   // Attach a click listener to every button
   $(".place-tag").click(function() {
@@ -165,9 +165,9 @@ $(function() {
 
 {% block tags %}
 {# Add a whole bunch of buttons #}
-  <div class="container tag-container">
+  <div class="container tag-container" data-toggle="buttons">
     {% for tag in tag_list %}
-      <button class="btn btn-primary btn-lg place-tag" id="{{tag}}" value="{{tag}}">{{tag}}</button>
+      <button class="btn btn-primary btn-lg place-tag" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
     {% endfor %}
   </div>
 
