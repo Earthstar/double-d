@@ -26,6 +26,16 @@ Streetfinder Map Search
 <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
 {% csrf_token %}
 <script src={% static "js/mapload.js" %}></script>
+<script>
+  function getActiveTags() {
+    // returns a list of strings of active tags
+    var activeTags = [];
+    $(".place-tag.active").each(function() {
+      activeTags.push($(this).attr("value"));
+    })
+    return activeTags;
+  }
+</script>
 
 {% endblock page_scripts %}
 
