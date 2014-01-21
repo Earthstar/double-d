@@ -21,7 +21,7 @@ def mapsearch_page(request):
     c.update(csrf(request))
     return render_to_response('map_search.html', c)
 
-def get_place_list(request):
+def place(request):
     if request.method == 'POST':
         # this is a list of strings with one element
         place_string = request.POST.get('results[]')
@@ -56,5 +56,77 @@ def process_place_json(place_string):
                 raw_data=json.dumps(place, separators=(',',':')),
                 )
 
-def ajaxtest(request):
-    return HttpResponse('success')
+# Json format contains
+# start, end - which are google latlon
+# waypointIDs - strings that should correspond to an existing Place
+#
+
+# start, end, name
+# start: {lat:
+# lon:
+# }
+
+# waypoints: {
+#     id: asdf,
+#     lat:
+#     lon:
+# }
+# use decorator?
+def path(request):
+    # User must be logged in to get and post paths
+    if not request.user.is_authenticated():
+        return HttpResponse("User not logged in")
+    if request.method == "GET":
+        # get user's path
+        path_name = request.GET['path_name']
+        # problem:raises error if the path doesn't exist?
+        try:
+            path = Path.objects.get(user=request.user, name=path_name)
+        except:
+            return HttpResponse("Path doesn't exist")
+        # return a Json object that can be reconstituted into a path
+        path_dict = {
+            "name": path.name,
+            "start": {
+                "lat": path.start_lat,
+                "lon": path.start_lon
+            },
+            "end": {
+                "lat": path.end_lat,
+                "lon": path.end_lon,
+            },
+            "waypoints": path.json
+        }
+        return HttpResponse(json.dumps(path_dict), content_type="application/json")
+    elif request.method == "POST":
+        # waypoints is a json
+        waypoints = request.POST.get('waypoints')
+        path_name = request.POST.get('name')
+        start = json.loads(request.POST.get('start'))
+        end = json.loads(request.POST.get('end'))
+        # get user
+        path = Path.objects.create(
+            name=path_name,
+            json=waypoints,
+            user=request.user,
+            start_lat=start['lat'],
+            start_lon=start['lon'],
+            end_lat=end['lat'],
+            end_lon=end['lon']
+            )
+        # get a Place for each waypoint
+        waypoints = json.loads(waypoints)
+        for waypoint in waypoints:
+            # We assume that a place exists.
+            place = Place.objects.get(google_id=waypoint['id'])
+            path.place_set.add(place)
+        path.save() # is this necessary?
+        return HttpResponse('success')
+    else:
+        return HttpResponse('not implemented yet')
+
+'''
+TODO: actually put this in database
+Implement getting paths from ID.
+Query which paths a user has.
+'''

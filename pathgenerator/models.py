@@ -84,8 +84,13 @@ class Path(models.Model):
     '''
     name = models.TextField()
     places = models.ManyToManyField(Place)
-    # The json which is returned when Google routes a path
+    # The json which is returned when Google routes a path. Just a list of Locations
     json = models.TextField(blank=True)
+    # The starting and ending points of a path
+    start_lat = models.DecimalField(max_digits=9, decimal_places=6)
+    start_lon = models.DecimalField(max_digits=9, decimal_places=6)
+    end_lat = models.DecimalField(max_digits=9, decimal_places=6)
+    end_lon = models.DecimalField(max_digits=9, decimal_places=6)
     # The user who owns a path. many-to-one relationship with User
     user = models.ForeignKey(User, blank=True)
 
