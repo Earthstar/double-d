@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login
 from django.conf import settings
 from django.conf.urls.static import static
-from pathgenerator.views import map_page, mapsearch_page, place, path
+from pathgenerator.views import map_page, mapsearch_page, place, path, saved_path_page
 from streetfarer.views import add_user, secret, logout_page, harmony, mockup
 
 # Uncomment the next two lines to enable the admin:
@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^saveplace/$', place),
     url(r'^mockup/$', mockup),
     url(r'^path/$', path),
+    url(r'^savedpathpage/$', saved_path_page),
     # Examples:
     url(r'^$', 'streetfarer.views.home', name='home'),
 

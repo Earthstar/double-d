@@ -132,6 +132,13 @@ def path(request):
     else:
         return HttpResponse('not implemented yet')
 
+def saved_path_page(request):
+    # TODO implement display of user paths
+    # Should not be able to view this page without being logged in
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('saved_path_page.html', c)
+
 '''
 TODO: actually put this in database
 Implement getting paths from ID.

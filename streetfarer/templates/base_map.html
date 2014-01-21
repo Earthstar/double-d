@@ -1,20 +1,59 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block section_scripts %}
-{% block page_scripts %}
-{% endblock page_scripts %}
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+  <script src="{% static "JSON-js-serializer/json2.js" %}"></script>
+  <script src={% static "js/mapload.js" %}></script>
+  {% block page_scripts %}
+  {% endblock page_scripts %}
 {% endblock section_scripts %}
 
 {% block section_css %}
-{% block page_css %}
-{% endblock page_css %}
+  <style>
+  #map-canvas {
+    height: 60vh; /*Use vh instead of % so we can use this in container*/
+    width: 100%;
+    margin: 0px;
+    padding: 0px
+  }
+</style>
+  {% block page_css %}
+  {% endblock page_css %}
 {% endblock section_css %}
 
 {% block content %}
-{% block distance_indicator %}
-{% endblock distance_indicator %}
-{% block map %}
-{% endblock map %}
-{% block tags %}
-{% endblock tags %}
+  {% block distance_indicator %}
+  {% endblock distance_indicator %}
+
+  {% block map %}
+    <button class="" id="refresh-map">Refresh map</button>
+    <button id="save-path">Save path</button>
+    {# Form for testing purposes #}
+    <script>
+      $(function() {
+        function displayPath(data, textStatus, xhr) {
+          console.log(data)
+        }
+
+        $('#get_path').ajaxForm({
+          url: '/path/',
+          type: 'GET',
+          success: displayPath,
+          });
+      })
+
+    </script>
+    <p>136381</p>
+    <form action="" id="get_path">
+      <input type="text" name="path_name">
+      <input type="submit" value="Get Path">
+    </form>
+    <div class="container"> {# The container class magically adjusts width #}
+      <div id="map-canvas"></div>
+    </div>
+  {% endblock map %}
+
+  {% block undermap_content %}
+  {% endblock undermap_content %}
 {% endblock content %}

@@ -11,59 +11,12 @@ Streetfinder Map Search
 {% endblock meta %}
 
 {% block page_css %}
-<style>
-  #map-canvas {
-    height: 60vh; /*Use vh instead of % so we can use this in container*/
-    width: 100%;
-    margin: 0px;
-    padding: 0px
-  }
-</style>
 {% endblock page_css %}
 
 {% block page_scripts %}
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-<script src="{% static "JSON-js-serializer/json2.js" %}"></script>
-<script src={% static "js/mapload.js" %}></script>
-<script src={% static "js/jquery.form.min.js" %}></script>
 {% endblock page_scripts %}
 
-{% block map %}
-  <button class="" id="refresh-map">Refresh map</button>
-  <button id="save-path">Save path</button>
-  {# Form for testing purposes #}
-  <script>
-    $(function() {
-      function displayPath(data, textStatus, xhr) {
-        console.log(data)
-      }
-      // $('#get_path').submit(function() {
-      //     console.log('activate submit')
-      //     $(this).ajaxSubmit({
-      //       url: '/path/',
-      //       type: 'GET',
-      //       success: displayPath,
-      //     })
-      // })
-      $('#get_path').ajaxForm({
-        url: '/path/',
-        type: 'GET',
-        success: displayPath,
-        });
-    })
-
-  </script>
-  <p>136381</p>
-  <form action="" id="get_path">
-    <input type="text" name="path_name">
-    <input type="submit" value="Get Path">
-  </form>
-  <div class="container"> {# The container class magically adjusts width #}
-    <div id="map-canvas"></div>
-  </div>
-{% endblock map %}
-
-{% block tags %}
+{% block undermap_content %}
 {# Add a whole bunch of buttons #}
   <div class="container tag-container" data-toggle="buttons">
     {% for tag in tag_list %}
@@ -71,4 +24,4 @@ Streetfinder Map Search
       <button class="btn btn-primary btn-lg place-tag" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
     {% endfor %}
   </div>
-{% endblock tags %}
+{% endblock undermap_content %}

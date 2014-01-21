@@ -30,7 +30,6 @@ $(function() {
   }
 
   var csrftoken = getCookie('csrftoken');
-  console.log(csrftoken)
 
   function csrfSafeMethod(method) {
   // these HTTP methods do not require CSRF protection
@@ -89,7 +88,6 @@ $(function() {
        for(var i = 0; i<8; i++){
           var ran = Math.floor(Math.random()*length);
           var randomPlace = results[ran];
-          console.log(randomPlace);
           pathList.push({lat:randomPlace.geometry.location.lat(), lng:randomPlace.geometry.location.lng(), id:randomPlace.id});
           waypoints.push({location:randomPlace.geometry.location, stopover:true});
           results.splice(ran, 1);
@@ -97,7 +95,6 @@ $(function() {
           if(length==0)
             break;
       }
-      console.log(pathPlaceIds);
       calcRoute(waypoints);
    }
   }
@@ -105,7 +102,6 @@ $(function() {
   function cachePlaces(points){
     // points is a list of objects which we need to turn into json strings
     // Is there a better way?
-    // console.log(points);
     var points_json = JSON.stringify(points)
     $.ajax({
       type: 'POST',
@@ -160,6 +156,10 @@ $(function() {
       activeTags.push($(this).attr("value"));
     })
     return activeTags;
+  }
+
+  function renderPath() {
+    // TODO fill in function
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
