@@ -82,9 +82,24 @@ def path(request):
             except:
                 return HttpResponse("Path doesn't exist")
             # return a Json object that can be reconstituted into a path
+            path_dict = {
+                "name": path.name,
+                "start": {
+                    "lat": path.start_lat,
+                    "lon": path.start_lon
+                },
+                "end": {
+                    "lat": path.end_lat,
+                    "lon": path.end_lon,
+                },
+                "waypoints": path.json
+            }
+            return HttpResponse(json.dumps(path_dict), content_type="application/json")
+        else:
+            return HttpResponse("User not logged in")
 
         return HttpResponse('Not implemented yet')
-    if request.method== "POST":
+    elif request.method == "POST":
         # waypoints is a json
         waypoints = json.loads(request.POST.get('waypoints'))
         path_name = request.POST.get('name')
@@ -98,14 +113,17 @@ def path(request):
             start_lat=start['lat'],
             start_lon=start['lon'],
             end_lat=end['lat'],
-            end_lat=end['lat']
+            end_lon=end['lat']
             )
         # get a Place for each waypoint
         for waypoint in waypoints:
+            # We assume that a place exists.
             place = Place.objects.get(google_id=waypoint['id'])
             path.place_set.add(place)
         path.save() # is this necessary?
         return HttpResponse('success')
+    else:
+        return HttpResponse('not implemented yet')
 
 '''
 TODO: actually put this in database
