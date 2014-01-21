@@ -84,7 +84,7 @@ class Path(models.Model):
     '''
     name = models.TextField()
     places = models.ManyToManyField(Place)
-    # The json which is returned when Google routes a path
+    # The json which is returned when Google routes a path. Just a list of Locations
     json = models.TextField(blank=True)
     # The starting and ending points of a path
     start_lat = models.DecimalField(max_digits=9, decimal_places=6)

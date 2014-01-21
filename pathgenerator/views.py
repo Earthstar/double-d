@@ -59,8 +59,56 @@ def process_place_json(place_string):
 # Json format contains
 # start, end - which are google latlon
 # waypointIDs - strings that should correspond to an existing Place
+#
+
+# start, end, name
+# start: {lat:
+# lon:
+# }
+
+# waypoints: {
+#     id: asdf,
+#     lat:
+#     lon:
+# }
 def path(request):
     if request.method == "GET":
+        if request.user.is_authenticated():
+            # get user's path
+            path_name = request.GET['path_name']
+            # problem:raises error if the path doesn't exist?
+            try:
+                path = Path.objects.get(user=request.user, name=path_name)
+            except:
+                return HttpResponse("Path doesn't exist")
+            # return a Json object that can be reconstituted into a path
+
         return HttpResponse('Not implemented yet')
     if request.method== "POST":
+        # waypoints is a json
+        waypoints = json.loads(request.POST.get('waypoints'))
+        path_name = request.POST.get('name')
+        start = json.loads(request.POST.get('start'))
+        end = json.loads(request.POST.get('end'))
+        # get user
+        path = Path.objects.create(
+            name=path_name,
+            json=waypoints,
+            user=request.user,
+            start_lat=start['lat'],
+            start_lon=start['lon'],
+            end_lat=end['lat'],
+            end_lat=end['lat']
+            )
+        # get a Place for each waypoint
+        for waypoint in waypoints:
+            place = Place.objects.get(google_id=waypoint['id'])
+            path.place_set.add(place)
+        path.save() # is this necessary?
         return HttpResponse('success')
+
+'''
+TODO: actually put this in database
+Implement getting paths from ID.
+Query which paths a user has.
+'''
