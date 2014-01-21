@@ -119,12 +119,13 @@ $(function() {
     // Reminder: clear pathPlaceIds
     var startJSON = JSON.stringify(start);
     var pathListJSON = JSON.stringify(pathList);
-    console.log("startJSON "+startJSON);
-    console.log("pathListJSON "+pathListJSON);
     $.ajax({
       type: 'POST',
       url: '/path/',
-      data: {'start': start, 'end': start, 'name': Math.round((Math.random()*1000000)), 'waypoints': pathList},
+      data: {'start': startJSON,
+      'end': startJSON,
+      'name': Math.round((Math.random()*1000000)),
+      'waypoints': pathListJSON}
     });
 
   }
@@ -133,7 +134,7 @@ $(function() {
     $.ajax({
       type: 'GET',
       url: '/path/',
-      data: {''}
+      data: ''
     });
   }
 
@@ -170,7 +171,7 @@ $(function() {
 
     //Need to save path
   $("#save-path").click(function() {
-
+    cachePath();
   })
 
 })
