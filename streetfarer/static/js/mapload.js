@@ -130,11 +130,11 @@ $(function() {
 
   }
 
-  function getPathFromID(pathId) {
+  function getPathFromID(pathName) {
     $.ajax({
       type: 'GET',
       url: '/path/',
-      data: ''
+      data: {'path_name': pathName}
     });
   }
 

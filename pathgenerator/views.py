@@ -83,23 +83,25 @@ def path(request):
         try:
             path = Path.objects.get(user=request.user, name=path_name)
         except:
-            return HttpResponse("Path doesn't exist")
+            # Status code for "no content"
+            return HttpResponse(content="Path with specified user and name doesn't exist", status=204)
         # return a Json object that can be reconstituted into a path
+        # Have to load waypoints otherwise it doesn't get deserialized correctly
         path_dict = {
             "name": path.name,
             "start": {
-                "lat": path.start_lat,
-                "lng": path.start_lng
+                "lat": str(path.start_lat),
+                "lng": str(path.start_lng)
             },
             "end": {
-                "lat": path.end_lat,
-                "lng": path.end_lng,
+                "lat": str(path.end_lat),
+                "lng": str(path.end_lng),
             },
-            "waypoints": path.json
+            "waypoints": json.loads(path.json)
         }
+        json_string = json.dumps(path_dict)
         return HttpResponse(json.dumps(path_dict), content_type="application/json")
     elif request.method == "POST":
-        print "POST request"
         # waypoints is a json
         path_name = request.POST['name']
         # Prevent paths with duplicate names
