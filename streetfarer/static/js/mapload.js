@@ -10,7 +10,7 @@ $(function() {
   var distance = 0;
   var tags = [];
 
-  var pathPlaceIds = [] //used to store the ids of places in stored paths
+  var pathList = [] //used to store the ids of places in stored paths
 
   // CSRF stuff using jQuery
   function getCookie(name) {
@@ -84,10 +84,13 @@ $(function() {
        var waypoints = new Array();
        var length = results.length;
        cachePlaces(results);
+
+       pathPlaceIds = []; //Clear pathPlaceIDs
        for(var i = 0; i<8; i++){
           var ran = Math.floor(Math.random()*length);
           var randomPlace = results[ran];
-          pathPlaceIds.push(randomPlace.id)
+          console.log(randomPlace);
+          pathList.push({lat:randomPlace.geometry.location.lat(), lng:randomPlace.geometry.location.lng(), id:randomPlace.id});
           waypoints.push({location:randomPlace.geometry.location, stopover:true});
           results.splice(ran, 1);
           length--;
@@ -107,14 +110,31 @@ $(function() {
     $.ajax({
       type: 'POST',
       url: '/saveplace/',
-      data: {'results[]': points_json},
+      data: {'results': points_json},
     });
   }
 
-  // directionResponse is a Google DirectionResponse object
-  function cachePath(directionResponse) {
+  function cachePath() {
     // Caches a path object in our database
     // Reminder: clear pathPlaceIds
+    var startJSON = JSON.stringify(start);
+    var pathListJSON = JSON.stringify(pathList);
+    console.log("startJSON "+startJSON);
+    console.log("pathListJSON "+pathListJSON);
+    $.ajax({
+      type: 'POST',
+      url: '/path/',
+      data: {'start': start, 'end': start, 'name': Math.round((Math.random()*1000000)), 'waypoints': pathList},
+    });
+
+  }
+
+  function getPathFromID(pathId) {
+    $.ajax({
+      type: 'GET',
+      url: '/path/',
+      data: {''}
+    });
   }
 
   function calcRoute(points) {
@@ -127,16 +147,6 @@ $(function() {
    };
    directionsService.route(request, function(response, status) {
      if (status == google.maps.DirectionsStatus.OK) {
-      // console.log("response")
-      // console.log(response)
-      // objToString(response)
-      // path = JSON.stringify(response)
-      // // console.log("path")
-      // // console.log(path)
-      // object = JSON.parse(path)
-      // console.log("parsed path")
-      // console.log(object)
-
       directionsDisplay.setDirections(response);
      }
    });
