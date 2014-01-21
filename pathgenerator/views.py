@@ -71,37 +71,36 @@ def process_place_json(place_string):
 #     lat:
 #     lon:
 # }
+# use decorator?
 def path(request):
+    # User must be logged in to get and post paths
+    if not request.user.is_authenticated():
+        return HttpResponse("User not logged in")
     if request.method == "GET":
-        if request.user.is_authenticated():
-            # get user's path
-            path_name = request.GET['path_name']
-            # problem:raises error if the path doesn't exist?
-            try:
-                path = Path.objects.get(user=request.user, name=path_name)
-            except:
-                return HttpResponse("Path doesn't exist")
-            # return a Json object that can be reconstituted into a path
-            path_dict = {
-                "name": path.name,
-                "start": {
-                    "lat": path.start_lat,
-                    "lon": path.start_lon
-                },
-                "end": {
-                    "lat": path.end_lat,
-                    "lon": path.end_lon,
-                },
-                "waypoints": path.json
-            }
-            return HttpResponse(json.dumps(path_dict), content_type="application/json")
-        else:
-            return HttpResponse("User not logged in")
-
-        return HttpResponse('Not implemented yet')
+        # get user's path
+        path_name = request.GET['path_name']
+        # problem:raises error if the path doesn't exist?
+        try:
+            path = Path.objects.get(user=request.user, name=path_name)
+        except:
+            return HttpResponse("Path doesn't exist")
+        # return a Json object that can be reconstituted into a path
+        path_dict = {
+            "name": path.name,
+            "start": {
+                "lat": path.start_lat,
+                "lon": path.start_lon
+            },
+            "end": {
+                "lat": path.end_lat,
+                "lon": path.end_lon,
+            },
+            "waypoints": path.json
+        }
+        return HttpResponse(json.dumps(path_dict), content_type="application/json")
     elif request.method == "POST":
         # waypoints is a json
-        waypoints = json.loads(request.POST.get('waypoints'))
+        waypoints = request.POST.get('waypoints')
         path_name = request.POST.get('name')
         start = json.loads(request.POST.get('start'))
         end = json.loads(request.POST.get('end'))
@@ -113,9 +112,10 @@ def path(request):
             start_lat=start['lat'],
             start_lon=start['lon'],
             end_lat=end['lat'],
-            end_lon=end['lat']
+            end_lon=end['lon']
             )
         # get a Place for each waypoint
+        waypoints = json.loads(waypoints)
         for waypoint in waypoints:
             # We assume that a place exists.
             place = Place.objects.get(google_id=waypoint['id'])
