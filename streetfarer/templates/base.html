@@ -74,14 +74,22 @@
 
   {% endblock header %}
 
-  {% block hidden_login %}
+
+
+  {% block content %}
+  <p>Nothing to see here</p>
+  {% endblock content %}
+
+    {% block hidden_login %}
 
   <script>
       $(function() {
         function printLoginStatus(data, textStatus, xhr) {
           console.log(data)
-          if (data.status == 'error') {
+          if (data.status === 'error') {
             $('#login-status').text(data.message)
+          } else if (data.status === 'success') {
+            $('.login-parcel').toggle()
           }
         }
 
@@ -95,6 +103,8 @@
           console.log(data)
           if (data.status == 'error') {
             $('#signup-status').text(data.message)
+          } else if (data.status === 'success') {
+            $('.login-parcel').toggle()
           }
         }
 
@@ -103,14 +113,40 @@
           type: 'POST',
           success: printSignupStatus,
           });
+
+        $('.toggle-login').click(function() {
+          console.log("in function")
+          $('.login-parcel').toggle();
+        })
       })
 
   </script>
 
+  <style>
+/*TODO fix styling*/
+#login-container {
+  position: fixed;
+  top: 10vh;
+}
+
+#greyscreen {
+  position:fixed;
+  top: 0vh;
+  left: 0vh;
+  height:100vh;
+  width:100vw;
+  opacity: 0.5;
+  background-color: gray;
+}
+
+  </style>
+{# login-parcel: anything that comes with login #}
+  <div id="greyscreen" class="login-parcel" hidden></div>
+
   {# You can log in on any page #}
   {# Toggle hidden to show and hide #}
   {# TODO: form submission using Ajax #}
-  <div class="container" id="login-container">
+  <div class="container login-parcel" id="login-container" hidden>
     {# Put positional divs around panel #}
     {# Assumes that context passes in login_form object #}
     <div class="panel panel-default">
@@ -168,10 +204,6 @@
   </div>
   <p>The logged-in user is: {{user}}</p>
   {% endblock hidden_login %}
-
-  {% block content %}
-  <p>Nothing to see here</p>
-  {% endblock content %}
 
   {% block footer %}
   <div id="footer">Example of footer. TODO</div>
