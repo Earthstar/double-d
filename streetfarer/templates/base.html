@@ -75,6 +75,25 @@
   {% endblock header %}
 
   {% block hidden_login %}
+
+  <script>
+      $(function() {
+        function printSuccess(data, textStatus, xhr) {
+          console.log(data)
+          if (data.status == 'error') {
+            $('#login-status').text(data.message)
+          }
+        }
+
+        $('#login-form').ajaxForm({
+          url: '/login/ajax/',
+          type: 'POST',
+          success: printSuccess,
+          });
+      })
+
+  </script>
+
   {# You can log in on any page #}
   {# Toggle hidden to show and hide #}
   {# TODO: form submission using Ajax #}
@@ -86,19 +105,17 @@
         <h3 class="panel-title">Login</h3>
       </div>
       <div class="panel-body">
-        <form action="." method="post" role="form" id="login-form">
+        <form action="." role="form" id="login-form">
           {% csrf_token %}
-          {% if login_form.errors %}
-            <p>Your username and password didn't match, please try again.</p>
-          {% endif %}
+          <p id="login-status"></p>
           <fieldset>
             <div class="form-group">
-              <label for="id_username">Username:</label>
-              {{ login_form.username }}
+              <label for="username">Username:</label>
+              <input type="text" name="username">
             </div>
             <div class="form-group">
-              <label for="id_password">Password:</label>
-              {{ login_form.password }}
+              <label for="password">Password:</label>
+              <input for="password" type="password" name="password"></input>
             </div>
             <input class="btn btn-lg btn-success btn-block" type="submit" value="login">
           </fieldset>

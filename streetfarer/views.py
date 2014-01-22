@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -69,12 +71,67 @@ def mockup(request):
     html = t.render(Context({}))
     return HttpResponse(html)
 
-def login_user(request):
+def login_ajax(request):
+    '''
+    Login function intended to be used with ajax request.
+    Not going to use UserForm.
+    Returns json of form {
+        status: <"error", "okay">,
+        message: <Description of status>
+    }
+    '''
+    message = _login_ajax(request)
+    message = json.dumps(message)
+    return HttpResponse(content=message, content_type="application/json")
+
+def _login_ajax(request):
+    '''
+    Helper function for login_ajax.
+    Returns a json object.
+    '''
     if request.method == "POST":
-        form = UserForm(request.POST)
-        if form.is_valid():
-            # login user
-            pass
-            return HttpResponse("success")
+        if not "username" in request.POST and "password" in request.POST:
+            message = {
+                "status": "error",
+                "message": "Invalid form input"
+                }
+            return message
+        username = request.POST["username"]
+        password = request.POST["password"]
+        # Verify that user exists
+        if User.objects.filter(username=username).count() == 0:
+            message = {
+                "status": "error",
+                "message": "Username doesn't exist"
+            }
+            return message
+        user = authenticate(username=username, password=password)
+        print user
+        print type(user)
+        if user is not None:
+            # is_active is a boolean, not a function like Django documentation says
+            if user.is_active:
+                login(request, user)
+                message = {
+                    "status": "okay",
+                    "message": "Login successful"
+                }
+                return message
+            else:
+                message = {
+                    "status": "error",
+                    "message": "User is not active"
+                }
+                return message
         else:
-            return HttpResponse("failure")
+            message = {
+                "status": "error",
+                "message": "Wrong password for username"
+            }
+            return message
+    else:
+        message = {
+            "status": "error",
+            "message": "Wrong request method"
+        }
+        return message

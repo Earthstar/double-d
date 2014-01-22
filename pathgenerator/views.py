@@ -84,7 +84,7 @@ def path(request):
             path = Path.objects.get(user=request.user, name=path_name)
         except:
             # Status code for "no content"
-            return HttpResponse(content="Path with specified user and name doesn't exist", status=204)
+            return HttpResponse(content="Path with specified user and name doesn't exist")
         # return a Json object that can be reconstituted into a path
         # Have to load waypoints otherwise it doesn't get deserialized correctly
         path_dict = {
