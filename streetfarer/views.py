@@ -68,3 +68,13 @@ def mockup(request):
     t = get_template('mockup.html')
     html = t.render(Context({}))
     return HttpResponse(html)
+
+def login_user(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            # login user
+            pass
+            return HttpResponse("success")
+        else:
+            return HttpResponse("failure")

@@ -152,7 +152,7 @@ $(function() {
   function getActiveTags() {
     // returns a list of strings of active tags
     var activeTags = [];
-    $(".place-tag.active").each(function() {
+    $(".place_tag.active").each(function() {
       activeTags.push($(this).attr("value"));
     })
     return activeTags;
@@ -164,8 +164,8 @@ $(function() {
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-   // Attach a click listener to refresh-map button
-  $("#refresh-map").click(function() {
+   // Attach a click listener to refresh_map button
+  $("#refresh_map").click(function() {
     genRoute(null, null, getActiveTags());
   });
 

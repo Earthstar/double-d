@@ -6,8 +6,7 @@ from django.shortcuts import render, render_to_response
 from django.template import Template, Context
 from django.template.loader import get_template
 
-from pathgenerator.models import Place, Path
-
+from pathgenerator.models import Place, Path, UserForm
 
 # Create your views here.
 def map_page(request):
@@ -17,7 +16,8 @@ def map_page(request):
 
 def mapsearch_page(request):
     # Need to add csrf token to every page with a form or ajax
-    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo"]}
+    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo"],
+        "login_form": UserForm()}
     c.update(csrf(request))
     return render_to_response('map_search.html', c)
 
