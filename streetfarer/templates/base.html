@@ -25,12 +25,12 @@
   {% block meta %}
   {% endblock meta %}
 
-  <title>{% block title %}Default Title{% endblock title %}</title>
+  <title>{% block title %}Streetfarer{% endblock title %}</title>
 </head>
 <body>
   {% block header %}
-
-
+{# Note that after user logs in, we will want to change the header. How implement? #}
+{# After successful Ajax login, manually change? Then each subsequent page will have a user #}
   <div class="container">
 
       <!-- Static navbar -->
@@ -160,11 +160,11 @@
           <fieldset>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="text" name="username">
+              <input type="text" name="username" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input for="password" type="password" name="password"></input>
+              <input for="password" type="password" name="password" placeholder="Password"></input>
             </div>
             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
           </fieldset>
@@ -182,19 +182,19 @@
           <fieldset>
             <div class="form-group">
               <label for="username">Username:</label>
-              <input type="text" name="username">
+              <input type="text" name="username" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input for="password" type="password" name="password"></input>
+              <input for="password" type="password" name="password" placeholder="Password"></input>
             </div>
             <div class="form-group">
               <label for="password">Password (again):</label>
-              <input for="password" type="password" name="passwordCheck"></input>
+              <input for="password" type="password" name="passwordCheck" placeholder="Password"></input>
             </div>
             <div class="form-group">
               <label for="username">Email</label>
-              <input type="text" name="email">
+              <input type="email" name="email" placeholder="Email">
             </div>
             <input class="btn btn-lg btn-success btn-block" type="submit" value="Signup">
           </fieldset>

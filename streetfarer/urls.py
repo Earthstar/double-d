@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^saveplace/$', place),
     url(r'^mockup/$', mockup),
     url(r'^path/$', path),
-    url(r'^savedpathpage/$', saved_path_page),
+    url(r'^user/paths/$', saved_path_page),
     url(r'^login/ajax/$', login_ajax),
     url(r'^user/signup/ajax$', signup_ajax),
     # Examples:

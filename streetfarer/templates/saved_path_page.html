@@ -6,8 +6,12 @@
 {% endblock title %}
 
 {% block undermap_content %}
+<script>
+  //TODO add script that attaches listeners to path buttons. Put this in mapload.js?
+</script>
+
 <h1>Saved paths</h1>
-{% for path in path_names %}
+{% for path in paths %}
   <button class="path_btn" value="{{path}}">{{path}}</button>
 {% endfor %}
 {# TODO: display all saved paths #}

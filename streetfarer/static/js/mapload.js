@@ -165,12 +165,12 @@ $(function() {
   google.maps.event.addDomListener(window, 'load', initialize);
 
    // Attach a click listener to refresh_map button
-  $("#refresh_map").click(function() {
+  $("#refresh-map").click(function() {
     genRoute(null, null, getActiveTags());
   });
 
     //Need to save path
-  $("#save-path").click(function() {
+  $("#save_path").click(function() {
     cachePath();
   })
 

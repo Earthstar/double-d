@@ -40,7 +40,7 @@ def process_place_json(place_string):
         # Create a new Place only if not currently exists
         # This is a workaround because django doesn't like the string 'id'
         _place_id = str(place['id'])
-        if Place.objects.filter(google_id=_place_id).count() < 1:
+        if Place.objects.filter(google_id=_place_id).exists():
             print 'Object already in database'
             # Not sure if there will be decimal problems
             lat = place['geometry']['location']['d']
@@ -106,7 +106,7 @@ def path(request):
         path_name = request.POST['name']
         # Prevent paths with duplicate names
         # If you want to edit a path, should use a PUT request
-        if Path.objects.filter(name=path_name, user=request.user).count() > 0:
+        if Path.objects.filter(name=path_name, user=request.user).exists():
             return HttpResponse('Path already exists')
         waypoints = request.POST['waypoints']
         start = json.loads(request.POST['start'])
@@ -132,12 +132,19 @@ def path(request):
     else:
         return HttpResponse('not implemented yet')
 
+
 def saved_path_page(request):
     # TODO implement display of user paths
     # Should not be able to view this page without being logged in
-    c = {}
-    c.update(csrf(request))
-    return render_to_response('saved_path_page.html', c)
+    if request.user.is_authenticated():
+        # Get all paths that belong to user
+        paths = Path.objects.filter(user=request.user)
+        c = {"paths": paths}
+        c.update(csrf(request))
+        return render_to_response('saved_path_page.html', c)
+    else:
+        # if user not logged in, can't see saved paths
+        return HttpResponseRedirect('/')
 
 '''
 TODO: actually put this in database
