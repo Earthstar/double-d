@@ -71,6 +71,61 @@ def mockup(request):
     html = t.render(Context({}))
     return HttpResponse(html)
 
+def signup_ajax(request):
+    '''
+    Create user using ajax. Also logs in user.
+    '''
+    message = _signup_ajax(request)
+    message = json.dumps(message)
+    return HttpResponse(content=message, content_type="application/json")
+
+def _signup_ajax(request):
+    '''
+    Helper function which creates a user.
+    Lol server-side password match checking.
+    '''
+    if request.method == "POST":
+        if not "username" in request.POST and \
+            "password" in request.POST and \
+            "passwordCheck" in request.POST and \
+            "email" in request.POST:
+            message = {
+                "status": "error",
+                "message": "Missing field"
+                }
+            return message
+        # Check if username exists
+        username = request.POST["username"]
+        if User.objects.filter(username=username).count() == 1:
+            message = {
+                "status": "error",
+                "message": "Username already exists"
+            }
+            return message
+        password = request.POST["password"]
+        password_check = request.POST["passwordCheck"]
+        if password != password_check:
+            message = {
+            "status": "error",
+            "message": "Password does not match"
+            }
+            return message
+        email = request.POST["email"]
+        User.objects.create_user(username=username, email=email, password=password)
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        message = {
+            "status": "success",
+            "message": "User created and logged in"
+        }
+        return message
+    else:
+        message = {
+            "status": "error",
+            "message": "Wrong request method"
+        }
+        return message
+
 def login_ajax(request):
     '''
     Login function intended to be used with ajax request.
@@ -113,7 +168,7 @@ def _login_ajax(request):
             if user.is_active:
                 login(request, user)
                 message = {
-                    "status": "okay",
+                    "status": "success",
                     "message": "Login successful"
                 }
                 return message

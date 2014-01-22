@@ -78,7 +78,7 @@
 
   <script>
       $(function() {
-        function printSuccess(data, textStatus, xhr) {
+        function printLoginStatus(data, textStatus, xhr) {
           console.log(data)
           if (data.status == 'error') {
             $('#login-status').text(data.message)
@@ -88,7 +88,20 @@
         $('#login-form').ajaxForm({
           url: '/login/ajax/',
           type: 'POST',
-          success: printSuccess,
+          success: printLoginStatus,
+          });
+
+        function printSignupStatus(data, textStatus, xhr) {
+          console.log(data)
+          if (data.status == 'error') {
+            $('#signup-status').text(data.message)
+          }
+        }
+
+        $('#signup-form').ajaxForm({
+          url: '/user/signup/ajax',
+          type: 'POST',
+          success: printSignupStatus,
           });
       })
 
@@ -117,7 +130,37 @@
               <label for="password">Password:</label>
               <input for="password" type="password" name="password"></input>
             </div>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="login">
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Signup</h3>
+      </div>
+      <div class="panel-body">
+        <form action="." role="form" id="signup-form">
+          {% csrf_token %}
+          <p id="signup-status"></p>
+          <fieldset>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input for="password" type="password" name="password"></input>
+            </div>
+            <div class="form-group">
+              <label for="password">Password (again):</label>
+              <input for="password" type="password" name="passwordCheck"></input>
+            </div>
+            <div class="form-group">
+              <label for="username">Email</label>
+              <input type="text" name="email">
+            </div>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Signup">
           </fieldset>
         </form>
       </div>
