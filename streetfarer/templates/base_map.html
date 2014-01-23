@@ -4,6 +4,7 @@
 {% block section_scripts %}
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
   <script src={% static "js/mapload.js" %}></script>
+  <script src={% static "js/menu.js" %}></script>
   {% block page_scripts %}
   {% endblock page_scripts %}
 {% endblock section_scripts %}
@@ -23,6 +24,52 @@
 
 {% block content %}
   {% block distance_indicator %}
+    <div id="header">
+
+    <div id="header_top">
+    <div class="container">
+      <!-- vertical line <div class="divider"></div> -->
+      <div id="select_btn">
+        <div id="shape">
+          <img id="walk_icon" src="{% static "icons/walk_icon.png" %}">
+          <div id="slider">
+            <div id="toggle_dot"></div>
+          </div>
+          <img id="run_icon" src="{% static "icons/run_icon.png" %}">
+        </div>
+        <div id="select_tooltip" style="display: block;">
+          <div class="arrowup" id="select_tooltip_arrow"></div>
+          Would you like to <br> run or walk?
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div id="select_btn">
+        <div id="distance_slider">
+          <input type="range" min="20" max="90" value="50" onchange="outputUpdate(value)"/>
+          <output for=fader id="minute">60</output>
+          <div class="label_1">TIME/MIN</div>
+          </div>
+      </div>
+      <div class="divider"></div>
+
+      <!---refresh button & save button-->
+
+      <div id="save_refresh_btn">
+        <div id="refresh_icon">
+          <div class="label">REFRESH</div>
+        </div>
+      </div>
+      <div id="save_refresh_btn">
+        <div id="save_icon">
+          <div class="label">SAVE</div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--header-->
+  </div>
   {% endblock distance_indicator %}
 
   {% block map %}

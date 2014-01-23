@@ -2,22 +2,25 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head class=" js no-touch" style="-webkit-transition: top 0s ease-out; transition: top 0s ease-out; position: relative; top: 0px;">
   {# All scripts that are needed for every page #}
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  {# <script src="{% static "js/bootstrap.min.js" %}"></script> #}
   <script src={% static "js/jquery.form.min.js" %}></script> {# Ajax forms #}
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   {% block section_scripts %}
   {% endblock section_scripts %}
 
-  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-
+  {# <link href="{% static "css/bootstrap.css" %}" rel="stylesheet"> #}
+  <link href="{% static "css/streetfarer.css" %}" rel="stylesheet">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   {% block section_css %}
   {% endblock section_css %}
 
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {# <meta http-equiv="X-UA-Compatible" content="IE=edge"> #}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -27,54 +30,30 @@
 
   <title>{% block title %}Streetfarer{% endblock title %}</title>
 </head>
-<body>
+<body id="dummybodyid">
   {% block header %}
-{# Note that after user logs in, we will want to change the header. How implement? #}
-{# After successful Ajax login, manually change? Then each subsequent page will have a user #}
-  <div class="container">
+<!--navigation bar-->
+  <div id="header_nevigation">
 
-      <!-- Static navbar -->
-      <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Streetfarer</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Running</a></li>
-            <li><a href="#">Walking</a></li>
-            <li class="Dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Time/Distance <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
+    <div class="container_nevigation">
+    <div id="logo_btn">
+        <img id="logo" src="{% static "icons/streetfarer-logo.png" %}">
+    </div>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="./">Saved Path</a></li>
-            <li><a href="/login/">Login</a></li>
+    <div id="login_register">
+    <!--<a href=#>Login</a> -->
+      <div class="label">Login</div>
+    </div>
 
-          </ul>
+    <div id="saved_path">
+    <!--<a href=#>Login</a> -->
+      <div class="label">Saved paths</div>
+    </div>
 
-        </div><!--/.nav-collapse -->
-      </div>
-  </div> {# End of container #}
+    </div>
+  </div>
 
   {% endblock header %}
-
-
 
   {% block content %}
   <p>Nothing to see here</p>
