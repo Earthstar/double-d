@@ -13,7 +13,9 @@ from streetfarer.views import add_user, secret, logout_page, harmony, mockup, lo
 
 # saveplace/
 
+# Redirect front page to mapsearch page for now
 urlpatterns = patterns('',
+    url(r'^$', mapsearch_page),
     url(r'^map/$', map_page),
     url(r'^map/search/$', mapsearch_page),
     # url(r'^login/$', login),
@@ -28,7 +30,7 @@ urlpatterns = patterns('',
     url(r'^login/ajax/$', login_ajax),
     url(r'^user/signup/ajax$', signup_ajax),
     # Examples:
-    url(r'^$', 'streetfarer.views.home', name='home'),
+    # url(r'^$', 'streetfarer.views.home', name='home'),
 
     # url(r'^streetfarer/', include('streetfarer.foo.urls')),
 
