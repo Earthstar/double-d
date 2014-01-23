@@ -1,0 +1,321 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-image: url('bg_pattern.jpg');
+	background-repeat: repeat;
+	font-family: sans-serif;
+	font-size: 10px;
+	color: #999;
+	overflow: hidden;
+	height: 100%;
+}
+#header{
+	position: fixed;
+	width: 100%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	cursor: default;
+	z-index: 1000;
+}
+
+#header_nevigation{
+	position: relative;
+	height: 30px;
+	width: 100%;
+	background: #D8D8D8;
+	/*background:#444;*/
+	border-top: 2px solid #444;
+	border-bottom: 0px solid #bbb;
+	box-shadow: 1px 1px 3px #ccc;
+	z-index: 600;
+}
+
+#login_register{
+	position: relative;
+	float: right;
+	margin-top:12px;/**/
+	margin-right:25px;
+
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+#saved_path{
+	position: relative;
+	float: right;
+	margin-top:12px;/**/
+	margin-right:15px;
+
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+#header_top{
+	position: relative;
+	height: 80px;
+	width: 100%;
+	background: white;
+	/*border-top: 1px solid #444;*/
+	border-top: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+	box-shadow: 0px 1px 3px #ccc;
+	z-index: 600;
+}
+.container{
+	width: 820px;
+	margin: 0 auto;
+}
+
+.container_nevigation{
+	width: 820px;
+	margin: 0 auto;
+}
+
+
+#logo_btn{
+	position: relative;
+	float: left;
+	height: 80px;
+	width: 190px;
+	background: transparent;
+}
+#logo.resize{
+	position: relative;
+	float: left;
+
+
+	
+}
+
+.divider{
+	position: relative;
+	float: left;
+	top: 25px;
+	height: 30px;
+	width: 1px;
+	background: #999;
+}
+
+#select_btn{
+	position: relative;
+	float: left;
+	display: block;
+	width: 170px;
+	height: 80px;
+	z-index: 100;
+	cursor: pointer;
+	text-align: center;
+	background: transparent;
+
+
+
+}
+#shape{
+	position: relative;
+	margin: 25px auto;
+	width: 110px;
+	height: 20px;
+	padding: 4px;
+	color: #666;
+	text-align: center;
+}
+#walk_icon{
+	position: relative;
+	float: left;
+	margin-right: 4px;
+	width: 18%;
+
+}
+#slider{
+	position: relative;
+	float: left;
+	width: 50px;
+	height: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background: #fff;
+}
+#toggle_dot{
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	background: #666;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+}
+#run_icon{
+	position: relative;
+	float: left;
+	margin-left: 4px;
+	opacity: .5;
+	width:20%;
+
+}
+#select_tooltip{
+	position: absolute;
+	top: 74px;
+	left: 45px;
+	width: 80px;
+	height: 26px;
+	color: #ccc;
+	background: #444;
+	border-radius: 6px;
+	display: none;
+	padding: 6px 6px;
+	z-index: 500;
+	box-shadow: 0 0 2px #444;
+}
+#select_tooltip_arrow{
+	position: absolute;
+	top: -6px;
+	left: 38px;
+}
+.arrowup{
+	border-color: #444 transparent;
+	border-style: solid;
+	border-width: 0px 6px 6px 6px;
+	height: 0;
+	width: 0;
+}
+l
+.menu_btn{
+	position: relative;
+	float: left;
+	display: block;
+	width: 80px; /*length of the bar 300*/
+	height: 80px;
+	background: transparent;
+	text-align: center;
+}
+#tbox_tooltip{
+	position: relative;
+	top: 74px;
+	left: -16px;
+	width: 100px;
+	height: 26px;
+	color: #ccc;
+	background: #444;
+	border-radius: 6px;
+	display: none;
+	padding: 6px 6px;
+	z-index: 500;
+	box-shadow: 0 0 2px #444;
+}
+#tbox_tooltip_arrow{
+	position: relative;
+	top: -6px;
+	left: 48px;
+}
+
+.label{
+	position: relative;
+	line-height: 16px;
+	padding: 0 2px;
+	color: black;
+	font-weight: 400; /* 300-500*/
+	font-size:14px;
+}
+
+.label_1{
+	position: relative;
+	line-height: 20px;
+	padding: 0 2px;
+	color: black;
+	font-weight: 400; /* 300-500*/
+	font-size:11px;
+}
+
+
+#minute {
+	position: relative;
+	line-height: 20px;
+	padding: 0 2px;
+	color: black;
+	font-weight: 400; /* 300-500*/
+	font-size:11px;
+
+}
+
+
+
+
+#tbox_btn{
+	cursor: pointer;
+}
+
+#distance_slider{
+	position: relative;
+	margin: 30px 7px 10px 10px; /*24px auto 4px auto*/
+}
+
+#save_refresh_btn{
+	position: relative;
+	float: right;
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+#refresh_btn{
+	position: relative;
+	float: right;
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+#save_btn{
+	position: relative;
+	float: right;
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+
+
+#refresh_icon{
+	position: relative;
+	display: block;
+	margin: 24px 40px 0 0;
+	width: 70px;
+	padding: 6px 20px;
+	border: 1px solid #444; /*light: #ccc*/;
+	border-radius: 20px;
+}
+
+#save_icon{
+	position: relative;
+	display: block;
+	margin: 24px 40px 0 0;
+	width: 40px;
+	padding: 6px 20px;
+	border: 1px solid #444; /*light: #ccc*/;
+	border-radius: 20px;
+}
+
+
+
+#tagcloud_btn{
+	position: relative;
+	float: right;
+	display: block;
+	height: 100%;
+	text-align: center;
+}
+
+
+.non_page{
+	color: #ddd;
+	background: white;
+	border: 1px solid #fff;
+}
+
+
+
