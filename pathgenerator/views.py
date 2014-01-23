@@ -78,8 +78,8 @@ def process_place_json(place_string):
 # use decorator?
 def path(request):
     # User must be logged in to get and post paths
-    # if not request.user.is_authenticated():
-    #     return HttpResponse("User not logged in")
+    if not request.user.is_authenticated():
+        return HttpResponse("User not logged in")
     if request.method == "GET":
         # get user's path
         path_name = request.GET['path-name']
@@ -129,10 +129,10 @@ def path(request):
         waypoints = json.loads(waypoints)
         for waypoint in waypoints:
             # We assume that a place exists. Problem: duplicate places?
-            place = Place.objects.filter(google_id=waypoint['id'])
-            if place.count() != 1:
-                print place
-                return HttpResponse('more than one error with same id')
+            try:
+                place = Place.objects.get(google_id=waypoint['id'])
+            except:
+                return HttpResponse('more than one place with same id')
             path.places.add(place)
         path.save() # is this necessary?
         return HttpResponse('success')
