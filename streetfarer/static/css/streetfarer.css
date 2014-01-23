@@ -301,9 +301,19 @@ button:hover, .active {
 
 #login-container {
 	color: black;
-	left:15vw;
-	margin-top:10vh;
-	font-size: 16px;
+	width: 600px;
+	position: fixed;
+	left: 50%;
+	margin: 10vh 0 0 -30%;
+}
+
+.panel-body {
+	background-color: white;
+	border: 2px groove threedface;
+}
+
+fieldset {
+	border: none;
 }
 
 .login-parcel {
