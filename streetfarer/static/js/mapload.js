@@ -112,8 +112,7 @@ $(function() {
        var waypoints = new Array();
        var length = results.length;
        cachePlaces(results);
-
-       pathPlaceIds = []; //Clear pathPlaceIDs
+       pathList = [];
        for(var i = 0; i<8; i++){
           var ran = Math.floor(Math.random()*length);
           var randomPlace = results[ran];
@@ -152,6 +151,8 @@ $(function() {
       'name': Math.round((Math.random()*1000000)),
       'waypoints': pathListJSON}
     });
+
+    pathList = [];
 
   }
 
