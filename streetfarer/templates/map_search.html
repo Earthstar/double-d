@@ -14,7 +14,51 @@ Streetfinder Map Search
 {% endblock page_css %}
 
 {% block page_scripts %}
+<script src={% static "js/menu.js" %}></script>
 {% endblock page_scripts %}
+
+  {% block distance_indicator %}
+<div id="header">
+  <div id="header_top">
+    <div class="container">
+      <!-- vertical line <div class="divider"></div> -->
+      <div id="select_btn">
+        <div id="shape">
+          <img id="walk_icon" src="{% static "icons/walk_icon.png" %}">
+          <div id="slider">
+            <div id="toggle_dot"></div>
+          </div>
+          <img id="run_icon" src="{% static "icons/run_icon.png" %}">
+        </div>
+        <div id="select_tooltip" style="display: block;">
+          <div class="arrowup" id="select_tooltip_arrow"></div>
+          Would you like to <br> run or walk?
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div id="select_btn">
+        <div id="distance_slider">
+          <input type="range" min="20" max="90" value="50" onchange="outputUpdate(value)"/>
+          <output for=fader id="minute">60</output>
+          <div class="label_1">TIME/MIN</div>
+          </div>
+      </div>
+      <div class="divider"></div>
+
+      <!---refresh button & save button-->
+
+      <div id="save_refresh_btn">
+        <button class="label rounded-button">REFRESH</button>
+      </div>
+      <div id="save_refresh_btn">
+        <button class="label rounded-button">SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!--header-->
+  {% endblock distance_indicator %}
 
 {% block undermap_content %}
 {# Add a whole bunch of buttons #}
