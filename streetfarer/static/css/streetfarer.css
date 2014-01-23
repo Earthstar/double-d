@@ -33,18 +33,7 @@ body{
 	z-index: 600;
 }
 
-#login_register{
-	position: relative;
-	float: right;
-	margin-top:12px;/**/
-	margin-right:25px;
-
-	display: block;
-	height: 100%;
-	text-align: center;
-}
-
-#saved_path{
+.header-float-right{
 	position: relative;
 	float: right;
 	margin-top:12px;/**/
