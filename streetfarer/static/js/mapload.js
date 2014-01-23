@@ -53,12 +53,20 @@ $(function() {
       zoom: 2
     });
 
-    var psForm = document.getElementById('path-submit');
-    psForm.addEventListener("submit", function(event){
+    var refreshButton = document.getElementById('refresh_btn');
+    refreshButton.addEventListener("click", function(event){
       event.preventDefault();
-      var inputDist = psForm.elements['distancefield'].value;
-      geocodeService.geocode({address:psForm.elements['locationfield'].value, region:"US"}, function(results, status){
-        geocodingCallback(results, status, inputDist, ['park', 'cafe', 'restaurant']);
+      var inputTime = document.getElementById('distance_slider_value').value;
+      var inputWalking = true;
+      var inputDist = 0;
+      if(inputWalking)
+        inputDist = inputTime/60*3*1609.344;
+      else
+        inputDist = inputTime/60*5*1609.344;
+      var inputStart = "Cambridge, MA";
+      var inputTags = getActiveTags();
+      geocodeService.geocode({address:inputStart, region:"US"}, function(results, status){
+        geocodingCallback(results, status, inputDist, inputTags);
       });
       return true;
     });
