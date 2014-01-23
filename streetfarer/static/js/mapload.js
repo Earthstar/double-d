@@ -2,6 +2,7 @@ $(function() {
   var map;
   var infowindow;
   var directionsService = new google.maps.DirectionsService();
+  var geocodeService = new google.maps.Geocoder();
   var placesService;
   var DISTANCE_CONSTANT = 2.6*3.14159;
 
@@ -49,14 +50,30 @@ $(function() {
 
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: cambridge,
-      zoom: 15
+      zoom: 2
+    });
+
+    var psForm = document.getElementById('path_submit');
+    psForm.addEventListener("submit", function(event){
+      event.preventDefault();
+      var inputDist = psForm.elements['distancefield'].value;
+      geocodeService.geocode({address:psForm.elements['locationfield'].value, region:"US"}, function(results, status){
+        geocodingCallback(results, status, inputDist, ['park', 'cafe', 'restaurant']);
+      });
+      return true;
     });
 
     directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
     infowindow = new google.maps.InfoWindow();
     placesService = new google.maps.places.PlacesService(map);
-    genRoute(cambridge, 5000, ['park', 'restaurant', 'cafe']);
+    //genRoute(cambridge, 5000, ['park', 'restaurant', 'cafe']);
+  }
+
+  function geocodingCallback(results, status, distance, tags){
+    if (status == google.maps.GeocoderStatus.OK) {
+      genRoute(results[0].geometry.location, distance, tags);
+    }
   }
 
 
@@ -73,10 +90,10 @@ $(function() {
       radius: modDist,
       types: tags,
     };
-    placesService.nearbySearch(request, callback);
+    placesService.nearbySearch(request, placesSearchCallback);
   }
 
-  function callback(results, status) {
+  function placesSearchCallback(results, status) {
     console.log(status);
     // results is a list of PlaceResult objects
     if (status == google.maps.places.PlacesServiceStatus.OK) {
