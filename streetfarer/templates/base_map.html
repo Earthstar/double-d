@@ -47,6 +47,11 @@
         <div id="distance_slider">
           <input id="distance_slider_value" type="range" min="30" max="120" value="75" onchange="outputUpdate(value)"/>
           <output for=fader id="minute">60</output>
+            <script type="text/javascript">
+                function outputUpdate(vol) {
+                document.querySelector('#minute').value = vol;
+                }
+              </script>
           <div class="label_1">TIME/MIN</div>
           </div>
       </div>
