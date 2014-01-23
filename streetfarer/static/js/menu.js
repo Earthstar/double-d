@@ -7,7 +7,7 @@ $(document).ready(function() {
 	var size= 6;
 	var comp= null;
 	var eraseCheck = 0;
-	
+
 
 	//hover over
 	$('#select_btn').mouseover(function(){
@@ -17,7 +17,7 @@ $(document).ready(function() {
 		$(this).css('backgroundImage', 'none');
 		$('#select_tooltip').hide();
 	})
-	
+
 
 	//toggle
 	$('#select_btn').click(function(){
@@ -27,23 +27,24 @@ $(document).ready(function() {
 				'opacity': '.5',
 			});
 			$('#run_icon').css('opacity', '1.0');
-			
-			check = 0;	
-			
+			document.getElementById('walking_check').checked = false;
+			check = 0;
+
 		}else{
 			$('#toggle_dot').css('left', '2px');
 			$('#walk_icon').css('opacity', '1.0');
 			$('#run_icon').css('opacity', '.5');
+			document.getElementById('walking_check').checked = true;
 			check = 1;
-			
-			
+
+
 		}
 	})
 
 
-	
-	
-	
+
+
+
 //document ready
 });
 

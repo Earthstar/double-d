@@ -59,12 +59,14 @@ $(function() {
       refreshButton.addEventListener("click", function(event){
         event.preventDefault();
         var inputTime = document.getElementById('distance_slider_value').value;
-        var inputWalking = true;
+        var inputWalking = document.getElementById('walking_check').checked;
         var inputDist = 0;
-        if(inputWalking)
+        if(inputWalking){
           inputDist = inputTime/60*3*1609.344;
-        else
+        }
+        else{
           inputDist = inputTime/60*5*1609.344;
+        }
         var inputStart = "Cambridge, MA";
         var inputTags = getActiveTags();
         geocodeService.geocode({address:inputStart, region:"US"}, function(results, status){
@@ -225,7 +227,7 @@ $(function() {
   });
 
     //Need to save path
-  $("#save-path").click(function() {
+  $("#save_btn").click(function() {
     cachePath();
   })
 
