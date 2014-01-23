@@ -4,7 +4,6 @@
 {% block section_scripts %}
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
   <script src={% static "js/mapload.js" %}></script>
-  <script src={% static "js/menu.js" %}></script>
   {% block page_scripts %}
   {% endblock page_scripts %}
 {% endblock section_scripts %}
@@ -24,56 +23,11 @@
 
 {% block content %}
   {% block distance_indicator %}
-<div id="header">
-  <div id="header_top">
-    <div class="container">
-      <!-- vertical line <div class="divider"></div> -->
-      <div id="select_btn">
-        <div id="shape">
-          <img id="walk_icon" src="{% static "icons/walk_icon.png" %}">
-          <div id="slider">
-            <div id="toggle_dot"></div>
-          </div>
-          <img id="run_icon" src="{% static "icons/run_icon.png" %}">
-        </div>
-        <div id="select_tooltip" style="display: block;">
-          <div class="arrowup" id="select_tooltip_arrow"></div>
-          Would you like to <br> run or walk?
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <div id="select_btn">
-        <div id="distance_slider">
-          <input id="distance_slider_value" type="range" min="30" max="120" value="75" onchange="outputUpdate(value)"/>
-          <output for=fader id="minute">60</output>
-            <script type="text/javascript">
-                function outputUpdate(vol) {
-                document.querySelector('#minute').value = vol;
-                }
-              </script>
-          <div class="label_1">TIME/MIN</div>
-          </div>
-      </div>
-      <div class="divider"></div>
-
-      <!---refresh button & save button-->
-
-      <div id="save_refresh_btn">
-        <button id="refresh_btn" class="label rounded-button">REFRESH</button>
-      </div>
-      <div id="save_refresh_btn">
-        <button id="save_btn" class="label rounded-button">SAVE</button>
-      </div>
-    </div>
-  </div>
-</div>
-    <!--header-->
   {% endblock distance_indicator %}
 
   {% block map %}
-    <button class="" id="refresh-map">Refresh map</button>
-    <button id="save-path">Save path</button>
+    {# <button class="" id="refresh-map">Refresh map</button> #}
+    {# <button id="save-path">Save path</button> #}
     {# Form for testing purposes #}
     <script>
       $(function() {
@@ -88,10 +42,10 @@
           });
       })
     </script>
-    <form action="" id="get_path">
-      <input type="text" name="path-name">
-      <input type="submit" value="Get Path">
-    </form>
+     {# <form action="" id="get_path"> #}
+      {# <input type="text" name="path-name"> #}
+      {# <input type="submit" value="Get Path"> #}
+    {# </form> #}
 
     <script language="JavaScript">
     function mapFromInput(form){
@@ -100,11 +54,11 @@
     }
     </script>
 
-    <form id="path_submit" method="GET">Enter a starting location and distance: <br>
-    <input type="text" name="locationfield" value="">
-    <input type="number" name="distancefield" value"">
-    <input type="submit" name="p_s_button" value="Click">
-    </form>
+    {# <form id="path_submit" method="GET">Enter a starting location and distance: <br> #}
+    {# <input type="text" name="locationfield" value=""> #}
+    {# <input type="number" name="distancefield" value""> #}
+    {# <input type="submit" name="p_s_button" value="Click"> #}
+    {# </form> #}
 
 
     <div class="container"> {# The container class magically adjusts width #}

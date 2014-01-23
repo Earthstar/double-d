@@ -10,8 +10,8 @@ body{
 	height: 100%;
 }
 #header{
-	position: fixed;
 	width: 100%;
+	margin-bottom: 0.5vh;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
