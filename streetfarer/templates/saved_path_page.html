@@ -6,16 +6,6 @@
 {% endblock title %}
 
 {% block undermap_content %}
-<script>
-  // Add radio toggle feature
-  $(function() {
-    $(".radio-toggle").click(function() {
-      $(".radio-toggle.active").toggleClass("active");
-      $(this).toggleClass("active");
-    })
-  })
-</script>
-
 <div class="container">
 <h1>Saved paths</h1>
   {% for path in paths %}
