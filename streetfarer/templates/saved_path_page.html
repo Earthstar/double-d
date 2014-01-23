@@ -7,9 +7,14 @@
 
 {% block undermap_content %}
 <script>
-  //TODO add script that attaches listeners to path buttons. Put this in mapload.js?
+  // Add radio toggle feature
+  $(function() {
+    $(".radio-toggle").click(function() {
+      $(".radio-toggle.active").toggleClass("active");
+      $(this).toggleClass("active");
+    })
+  })
 </script>
-
 
 <div class="container">
 <h1>Saved paths</h1>
