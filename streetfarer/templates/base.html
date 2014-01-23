@@ -41,8 +41,8 @@
         <img id="logo" src="{% static "icons/streetfarer-logo.png" %}">
     </div>
 
-    <div id="login_register" class="header-float-right">
-      <div class="label">Login</div>
+    <div id="login_register" class="header-float-right toggle-login">
+      <a class="label">Login</a>
     </div>
 
     <div id="saved_path" class="header-float-right">
@@ -121,12 +121,12 @@
 
   </style>
 {# login-parcel: anything that comes with login #}
-  <div id="greyscreen" class="login-parcel" hidden></div>
+  <div id="greyscreen" class="login-parcel"></div>
 
   {# You can log in on any page #}
   {# Toggle hidden to show and hide #}
   {# TODO: form submission using Ajax #}
-  <div class="container login-parcel" id="login-container" hidden>
+  <div class="container login-parcel" id="login-container">
     {# Put positional divs around panel #}
     {# Assumes that context passes in login_form object #}
     <div class="panel panel-default">
@@ -146,7 +146,7 @@
               <label for="password">Password:</label>
               <input for="password" type="password" name="password" placeholder="Password"></input>
             </div>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+            <input class="rounded-button" type="submit" value="Login">
           </fieldset>
         </form>
       </div>
@@ -176,7 +176,7 @@
               <label for="username">Email</label>
               <input type="email" name="email" placeholder="Email">
             </div>
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Signup">
+            <input class="rounded-button" type="submit" value="Signup">
           </fieldset>
         </form>
       </div>

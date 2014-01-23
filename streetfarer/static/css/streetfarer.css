@@ -3,7 +3,7 @@ body{
 	padding: 0;
 	background-repeat: repeat;
 	font-family: sans-serif;
-	font-size: 10px;
+	font-size: 12px;
 	color: #999;
 	overflow: hidden;
 	height: 100%;
@@ -297,4 +297,15 @@ l
 
 button:hover, .active {
 	background-color: #ccc;
+}
+
+#login-container {
+	color: black;
+	left:15vw;
+	margin-top:10vh;
+	font-size: 16px;
+}
+
+.login-parcel {
+	display: none;
 }
