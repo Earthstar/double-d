@@ -60,7 +60,6 @@ $(function() {
         event.preventDefault();
         var inputTime = document.getElementById('distance_slider_value').value;
         var inputWalking = document.getElementById('walking_check').checked;
-        console.log(inputWalking);
         var inputDist = 0;
         if(inputWalking){
           inputDist = inputTime/60*3*1609.344;
@@ -228,7 +227,7 @@ $(function() {
   });
 
     //Need to save path
-  $("#save-path").click(function() {
+  $("#save_btn").click(function() {
     cachePath();
   })
 
