@@ -55,7 +55,6 @@ $(function() {
 
     var refreshButton = document.getElementById('refresh_btn');
     refreshButton.addEventListener("click", function(event){
-      console.log("oogabooga");
       event.preventDefault();
       var inputTime = document.getElementById('distance_slider_value').value;
       var inputWalking = true;
@@ -103,7 +102,6 @@ $(function() {
   }
 
   function placesSearchCallback(results, status) {
-    console.log(status);
     // results is a list of PlaceResult objects
     if (status == google.maps.places.PlacesServiceStatus.OK) {
        var waypoints = new Array();
@@ -175,7 +173,6 @@ $(function() {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
       } else {
-        console.log(status)
       }
     });
   }
