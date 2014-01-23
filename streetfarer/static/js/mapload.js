@@ -95,7 +95,7 @@ $(function() {
           if(length==0)
             break;
       }
-      calcRoute(waypoints);
+      calcRoute(start, waypoints);
    }
   }
 
@@ -130,23 +130,28 @@ $(function() {
     $.ajax({
       type: 'GET',
       url: '/path/',
-      data: {'path-name': pathName}
+      data: {'path-name': pathName},
+      success: renderPath,
+      error: displayError
     });
   }
 
-  function calcRoute(points) {
-   var request = {
-       origin:start,
-       destination:start,
-       waypoints:points,
-       optimizeWaypoints:true,
-       travelMode: google.maps.TravelMode.WALKING
-   };
-   directionsService.route(request, function(response, status) {
-     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-     }
-   });
+  // Assumes that start and end are always the same
+  function calcRoute(start, points) {
+    request = {
+      origin:start,
+      destination:start,
+      waypoints:points,
+      optimizeWaypoints:true,
+      travelMode: google.maps.TravelMode.WALKING
+    };
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      } else {
+        console.log(status)
+      }
+    });
   }
 
   function getActiveTags() {
@@ -158,8 +163,22 @@ $(function() {
     return activeTags;
   }
 
-  function renderPath() {
-    // TODO fill in function
+  function renderPath(data) {
+    // Namespace collision?
+    var _start  = new google.maps.LatLng(data.start.lat, data.start.lng);
+    var json_waypoints = data.waypoints
+    var waypoints = []
+    for (var i = 0; i < json_waypoints.length; i++) {
+      // Try rounding the lats and lngs, NOPE
+      var waypointLatLng = new google.maps.LatLng(json_waypoints[i].lat, json_waypoints[i].lng);
+      waypoints.push({location:waypointLatLng, stopover:true});
+    }
+    calcRoute(_start, waypoints);
+  }
+
+  function displayError() {
+    // Displays error on screen, most likely because internet down
+    console.log("Couldn't load path")
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
@@ -172,6 +191,10 @@ $(function() {
     //Need to save path
   $("#save-path").click(function() {
     cachePath();
+  })
+
+  $(".get-path-button").click(function() {
+    getPathFromID($(this).attr("value"))
   })
 
 })
