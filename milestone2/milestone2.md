@@ -9,6 +9,8 @@ Milestone 2
 
     __We have implemented login such that a user can log in to a page. We have not implemented differences in the header's appearance due to login. We have implemented path generation, with specified tags, distances, and walking/running. If you are logged in and have saved paths, you can view them, but it's a bit buggy. The UI is subject to change. Try logging in as Admin with password "password"!__
 
+    __We have not choosing where you start, or naming and deleting paths.__
+
 3. Are there any features you wanted to include in your MVP from Milestone 1 that are not complete? If so, which are they?
 
     __No, we have implemented our desired features.__

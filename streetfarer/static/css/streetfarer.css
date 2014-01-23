@@ -325,3 +325,7 @@ fieldset {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+
+#login_register {
+	text-decoration: underline;
+}
