@@ -130,7 +130,7 @@ $(function() {
     $.ajax({
       type: 'GET',
       url: '/path/',
-      data: {'path_name': pathName}
+      data: {'path-name': pathName}
     });
   }
 
@@ -152,7 +152,7 @@ $(function() {
   function getActiveTags() {
     // returns a list of strings of active tags
     var activeTags = [];
-    $(".place_tag.active").each(function() {
+    $(".place-tag.active").each(function() {
       activeTags.push($(this).attr("value"));
     })
     return activeTags;
@@ -170,7 +170,7 @@ $(function() {
   });
 
     //Need to save path
-  $("#save_path").click(function() {
+  $("#save-path").click(function() {
     cachePath();
   })
 

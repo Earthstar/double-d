@@ -27,7 +27,10 @@ def place(request):
         place_string = request.POST.get('results')
         # print json_string
         process_place_json(place_string)
-    return HttpResponse('success')
+        return HttpResponse('success')
+    else:
+        return HttpResponse('Not implemented')
+
 
 def process_place_json(place_string):
     '''
@@ -42,6 +45,7 @@ def process_place_json(place_string):
         _place_id = str(place['id'])
         if Place.objects.filter(google_id=_place_id).exists():
             print 'Object already in database'
+        else:
             # Not sure if there will be decimal problems
             lat = place['geometry']['location']['d']
             lng = place['geometry']['location']['e']
@@ -78,7 +82,7 @@ def path(request):
     #     return HttpResponse("User not logged in")
     if request.method == "GET":
         # get user's path
-        path_name = request.GET['path_name']
+        path_name = request.GET['path-name']
         # problem:raises error if the path doesn't exist?
         try:
             path = Path.objects.get(user=request.user, name=path_name)
@@ -124,8 +128,11 @@ def path(request):
         # get a Place for each waypoint
         waypoints = json.loads(waypoints)
         for waypoint in waypoints:
-            # We assume that a place exists.
-            place = Place.objects.get(google_id=waypoint['id'])
+            # We assume that a place exists. Problem: duplicate places?
+            place = Place.objects.filter(google_id=waypoint['id'])
+            if place.count() != 1:
+                print place
+                return HttpResponse('more than one error with same id')
             path.places.add(place)
         path.save() # is this necessary?
         return HttpResponse('success')
