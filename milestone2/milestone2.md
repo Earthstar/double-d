@@ -7,7 +7,7 @@ Milestone 2
 
 2. Which features are implemented. To what extent are they complete?
 
-    __We have implemented login, path generation, path saving, display of saved paths, location tags, and specifying the distance of tags. These features are usable, although the UI may be subject to change.__
+    __We have implemented login such that a user can log in to a page. We have not implemented differences in the header's appearance due to login. We have implemented path generation, with specified tags, distances, and walking/running. If you are logged in and have saved paths, you can view them, but it's a bit buggy. The UI is subject to change. Try logging in as Admin with password "password"!__
 
 3. Are there any features you wanted to include in your MVP from Milestone 1 that are not complete? If so, which are they?
 
