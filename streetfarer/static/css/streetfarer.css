@@ -89,7 +89,7 @@ body{
 	float: left;
 
 
-	
+
 }
 
 .divider{
@@ -278,29 +278,14 @@ l
 	text-align: center;
 }
 
-
-
-#refresh_icon{
+.rounded-button {
 	position: relative;
 	display: block;
 	margin: 24px 40px 0 0;
-	width: 70px;
 	padding: 6px 20px;
 	border: 1px solid #444; /*light: #ccc*/;
 	border-radius: 20px;
 }
-
-#save_icon{
-	position: relative;
-	display: block;
-	margin: 24px 40px 0 0;
-	width: 40px;
-	padding: 6px 20px;
-	border: 1px solid #444; /*light: #ccc*/;
-	border-radius: 20px;
-}
-
-
 
 #tagcloud_btn{
 	position: relative;

@@ -24,9 +24,8 @@
 
 {% block content %}
   {% block distance_indicator %}
-    <div id="header">
-
-    <div id="header_top">
+<div id="header">
+  <div id="header_top">
     <div class="container">
       <!-- vertical line <div class="divider"></div> -->
       <div id="select_btn">
@@ -56,20 +55,15 @@
       <!---refresh button & save button-->
 
       <div id="save_refresh_btn">
-        <div id="refresh_icon">
-          <div class="label">REFRESH</div>
-        </div>
+        <button class="label rounded-button">REFRESH</button>
       </div>
       <div id="save_refresh_btn">
-        <div id="save_icon">
-          <div class="label">SAVE</div>
-        </div>
-        </div>
-        </div>
+        <button class="label rounded-button">SAVE</button>
       </div>
     </div>
-    <!--header-->
   </div>
+</div>
+    <!--header-->
   {% endblock distance_indicator %}
 
   {% block map %}
