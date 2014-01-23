@@ -47,6 +47,21 @@
       <input type="text" name="path_name">
       <input type="submit" value="Get Path">
     </form>
+
+    <script language="JavaScript">
+    function mapFromInput(form){
+      var loc= form.locationfield.value;
+      genRoute(loc, null, null);
+    }
+    </script>
+
+    <form id="path_submit" method="GET">Enter a starting location and distance: <br>
+    <input type="text" name="locationfield" value="">
+    <input type="number" name="distancefield" value"">
+    <input type="submit" name="p_s_button" value="Click">
+    </form>
+
+
     <div class="container"> {# The container class magically adjusts width #}
       <div id="map-canvas"></div>
     </div>
