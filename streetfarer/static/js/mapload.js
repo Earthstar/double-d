@@ -53,7 +53,7 @@ $(function() {
       zoom: 2
     });
 
-    var psForm = document.getElementById('path_submit');
+    var psForm = document.getElementById('path-submit');
     psForm.addEventListener("submit", function(event){
       event.preventDefault();
       var inputDist = psForm.elements['distancefield'].value;
