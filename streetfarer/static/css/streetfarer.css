@@ -319,3 +319,9 @@ fieldset {
 .login-parcel {
 	display: none;
 }
+
+.tag-container {
+	height: 20vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

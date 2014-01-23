@@ -16,7 +16,9 @@ def map_page(request):
 
 def mapsearch_page(request):
     # Need to add csrf token to every page with a form or ajax
-    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo"],
+    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo", "bar",
+        "florist", "movie_theater", "museum", "night_club", "library",
+        "aquarium", "liquor_store"],
         "login_form": UserForm()}
     c.update(csrf(request))
     return render_to_response('map_search.html', c)
