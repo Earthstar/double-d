@@ -14,14 +14,21 @@ Streetfinder Map Search
 {% endblock page_css %}
 
 {% block page_scripts %}
+<script>
+  $(function() {
+    $(".check-toggle").click(function() {
+      $(this).toggleClass("active");
+    })
+  })
+</script>
 {% endblock page_scripts %}
 
 {% block undermap_content %}
 {# Add a whole bunch of buttons #}
-  <div class="container tag-container" data-toggle="buttons">
+  <div class="container tag-container">
     {% for tag in tag_list %}
     {# Note that if button is active, it will have an "active" class #}
-      <button class="place-tag rounded-button float-left label" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
+      <button class="place-tag rounded-button float-left label check-toggle" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
     {% endfor %}
   </div>
 {% endblock undermap_content %}
