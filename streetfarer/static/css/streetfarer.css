@@ -291,6 +291,15 @@ button {
 #path-name-input {
 	width: 100px;
 	margin: 24px 20px 0 0;
+}
+
+#error-message {
+	position:relative;
+	left:10px;
+	color: red;
+}
+
+.float-left {
 	float:left;
 }
 
