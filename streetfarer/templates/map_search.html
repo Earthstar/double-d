@@ -17,10 +17,10 @@ Streetfinder Map Search
 <script src={% static "js/menu.js" %}></script>
 <script type="text/javascript">
 $(function() {
-  $('input[type="range"]').on('change', function(e) {
+  $('#distance_slider_value').on('change', function(e) {
     var _val = $(this).val();
-    $(this).next('span').text(_val);
-  });
+    $("#minute").text(_val);
+  })
 })
 </script>
 {% endblock page_scripts %}
@@ -53,8 +53,8 @@ $(function() {
       {# <div class="divider"></div> #}
       <div id="select_btn">
         <div id="distance_slider"> {# Fix overflow width #}
-          <input id="distance_slider_value" type="range" min="30" max="90" value="60"/>
-          <div class="label_1">TIME/MIN</div>
+          <input id="distance_slider_value" type="range" min="30" max="120" value="60"/>
+          <div class="label_1">MIN</div>
           <span for=fader id="minute">60</span>
         </div>
 
@@ -68,11 +68,10 @@ $(function() {
       {# <div class="divider"></div> #}
 
       <!---refresh button & save button-->
-
-
-      <button id="refresh_btn" class="label rounded-button topbar-button">REFRESH</button>
-      <button id="save_btn" class="label rounded-button topbar-button">SAVE</button>
+      <button id="refresh-btn" class="label rounded-button topbar-button">REFRESH</button>
       <input id="path-name-input" type="text" placeholder="Name of path">
+      <button id="save_btn" class="label rounded-button topbar-button">SAVE</button>
+
       <div id="refresh-tooltip" class="tooltip">
         <div class="arrowup tooltip-arrow"></div>
         Get a new path!

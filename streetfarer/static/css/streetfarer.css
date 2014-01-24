@@ -3,7 +3,7 @@ body{
 	padding: 0;
 	background-repeat: repeat;
 	font-family: sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	color: #999;
 	overflow: hidden;
 	height: 100%;
@@ -14,6 +14,7 @@ input {
 	outline: 0;
 	padding: 6px 10px;
 	border: 1px solid #444;
+	font-size: 14px
 }
 
 button {
@@ -188,7 +189,15 @@ button {
 }
 
 #distance-slider-tooltip {
-	left: 500px;
+	left: 30vw;
+}
+
+#refresh-tooltip {
+	left: 60vw;
+}
+
+#refresh-btn {
+	margin-left: -90px;
 }
 
 .menu_btn{
@@ -273,7 +282,7 @@ button {
 
 .topbar-button {
 	position: relative;
-	float: right;
+	float: left;
 	display: block;
 	text-align: center;
 	margin-right: 20px;
@@ -282,7 +291,7 @@ button {
 #path-name-input {
 	width: 100px;
 	margin: 24px 20px 0 0;
-	float:right;
+	float:left;
 }
 
 #tagcloud_btn{
