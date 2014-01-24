@@ -8,6 +8,18 @@ body{
 	overflow: hidden;
 	height: 100%;
 }
+
+input {
+	border-radius: 20px;
+	outline: 0;
+	padding: 6px 10px;
+	border: 1px solid #444;
+}
+
+button {
+	outline: 0;
+}
+
 #header{
 	width: 100%;
 	margin-bottom: 0.5vh;
@@ -91,6 +103,7 @@ body{
 
 #select_btn{
 	position: relative;
+	left: -150px;
 	float: left;
 	display: block;
 	width: 170px;
@@ -146,20 +159,11 @@ body{
 
 }
 #select_tooltip{
-	position: absolute;
 	top: 74px;
 	left: 45px;
-	width: 100px;
-	height: 26px;
-	color: #ccc;
-	background: #444;
-	border-radius: 6px;
 	display: none;
-	padding: 6px 6px;
-	z-index: 500;
-	box-shadow: 0 0 2px #444;
 }
-#select_tooltip_arrow{
+.tooltip-arrow{
 	position: absolute;
 	top: -6px;
 	left: 38px;
@@ -171,7 +175,22 @@ body{
 	height: 0;
 	width: 0;
 }
-l
+
+.tooltip {
+	top: 74px;
+	position: absolute;
+	color: #ccc;
+	background: #444;
+	border-radius: 6px;
+	padding: 6px 6px;
+	z-index: 500;
+	box-shadow: 0 0 2px #444;
+}
+
+#distance-slider-tooltip {
+	left: 500px;
+}
+
 .menu_btn{
 	position: relative;
 	float: left;
@@ -222,16 +241,16 @@ l
 
 #minute {
 	position: relative;
+	top: -51px;
+	left: 30px;
+	float:right;
 	line-height: 20px;
 	padding: 0 2px;
 	color: black;
 	font-weight: 400; /* 300-500*/
-	font-size:11px;
+	font-size:12px;
 
 }
-
-
-
 
 #tbox_btn{
 	cursor: pointer;
@@ -239,31 +258,7 @@ l
 
 #distance_slider{
 	position: relative;
-	margin: 30px 7px 10px 10px; /*24px auto 4px auto*/
-}
-
-#save_refresh_btn{
-	position: relative;
-	float: right;
-	display: block;
-	height: 100%;
-	text-align: center;
-}
-
-#refresh_btn{
-	position: relative;
-	float: right;
-	display: block;
-	height: 100%;
-	text-align: center;
-}
-
-#save_btn{
-	position: relative;
-	float: right;
-	display: block;
-	height: 100%;
-	text-align: center;
+	margin: 20px 7px 10px 10px; /*24px auto 4px auto*/
 }
 
 .rounded-button {
@@ -274,6 +269,20 @@ l
 	border: 1px solid #444; /*light: #ccc*/;
 	border-radius: 20px;
 	background-color: white;
+}
+
+.topbar-button {
+	position: relative;
+	float: right;
+	display: block;
+	text-align: center;
+	margin-right: 20px;
+}
+
+#path-name-input {
+	width: 100px;
+	margin: 24px 20px 0 0;
+	float:right;
 }
 
 #tagcloud_btn{
