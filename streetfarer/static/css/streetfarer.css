@@ -347,7 +347,7 @@ fieldset {
 	display: none;
 }
 
-.tag-container {
+.button-container {
 	height: 20vh;
 	overflow-y: scroll;
 	overflow-x: hidden;
