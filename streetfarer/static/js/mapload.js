@@ -348,4 +348,9 @@ $(function() {
     getPathFromID($(this).attr("value"))
   })
 
+  // Good enough UI effect
+  // setTimeout(function() {
+  //   $("#map-creation-bar *").slideUp("fast")
+  // }, 2000)
+
 })

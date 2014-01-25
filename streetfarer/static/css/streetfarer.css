@@ -21,7 +21,7 @@ button {
 	outline: 0;
 }
 
-#header{
+.header{
 	width: 100%;
 	margin-bottom: 0.5vh;
 	-webkit-touch-callout: none;
