@@ -2,8 +2,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login
 from django.conf import settings
 from django.conf.urls.static import static
+
 from pathgenerator.views import map_page, mapsearch_page, place, path, saved_path_page
-from streetfarer.views import add_user, secret, logout_page, harmony, mockup, login_ajax, signup_ajax, is_logged_in
+from streetfarer.views import add_user, secret, logout_page, harmony, mockup, login_ajax, signup_ajax, is_logged_in, home
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -15,7 +16,7 @@ from streetfarer.views import add_user, secret, logout_page, harmony, mockup, lo
 
 # Redirect front page to mapsearch page for now
 urlpatterns = patterns('',
-    url(r'^$', mapsearch_page),
+    url(r'^$', home),
     url(r'^map/$', map_page),
     url(r'^map/search/$', mapsearch_page),
     # url(r'^login/$', login),

@@ -12,7 +12,7 @@ from django.template.loader import get_template
 from pathgenerator.models import UserForm
 
 def home(request):
-    t = get_template('index.html')
+    t = get_template('home.html')
     html = t.render(Context({}))
     return HttpResponse(html)
 

@@ -170,6 +170,7 @@ $(function() {
       distance = distanceParam;
     if(tagsParam != null)
       tags = tagsParam;
+    console.log(tags)
     var modDist = distance/DISTANCE_CONSTANT;
     var request = {
       location: start,

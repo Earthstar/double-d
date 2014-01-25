@@ -198,6 +198,9 @@ button {
 
 #refresh-btn {
 	margin-left: -90px;
+	position: relative;
+	top:1px;
+	/*slightly mis-aligned?*/
 }
 
 .menu_btn{
@@ -356,4 +359,19 @@ fieldset {
 #login_register {
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+/*Stuff to override bootstrap*/
+
+.container:before, .container:after{
+	content: none;
+}
+
+input, button {
+	line-height: normal;
+}
+
+*, *:before, *:after {
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
 }
