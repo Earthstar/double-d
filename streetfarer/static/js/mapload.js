@@ -53,9 +53,7 @@ $(function() {
       center: cambridge,
       zoom: 2
     });
-
-
-    var refreshButton = document.getElementById('refresh_btn');
+    var refreshButton = document.getElementById('refresh-btn');
     if (refreshButton) {
       refreshButton.addEventListener("click", function(event){
         event.preventDefault();
@@ -139,7 +137,7 @@ $(function() {
     });
   }
 
-  function cachePath() {
+  function cachePath(name) {
     // Caches a path object in our database
     // Reminder: clear pathPlaceIds
     var startJSON = JSON.stringify(start);
@@ -149,7 +147,7 @@ $(function() {
       url: '/path/',
       data: {'start': startJSON,
       'end': startJSON,
-      'name': Math.round((Math.random()*1000000)),
+      'name': name,
       'waypoints': pathListJSON}
     });
 
@@ -200,7 +198,6 @@ $(function() {
     var json_waypoints = data.waypoints
     var waypoints = []
     for (var i = 0; i < json_waypoints.length; i++) {
-      // Try rounding the lats and lngs, NOPE
       var waypointLatLng = new google.maps.LatLng(json_waypoints[i].lat, json_waypoints[i].lng);
       waypoints.push({location:waypointLatLng, stopover:true});
     }
@@ -229,10 +226,26 @@ $(function() {
     genRoute(null, null, getActiveTags());
   });
 
-    //Need to save path
+
+
+  //Need to save path
+  // Could be hacked. Need to sanitize inputs.
   $("#save_btn").click(function() {
-    if(pathStatus == google.maps.DirectionsStatus.OK)
-      cachePath();
+    // Check whether user has actually generated a path. If not, say it
+    if (pathList.length === 0) {
+      $("#error-message").text("No generated path");
+      return
+    }
+    // Check whether name exists. If it doesn't, show error message
+    var name = $("#path-name-input").val()
+    if (name === "") {
+      $("#error-message").text("*Input name");
+      return
+    } else {
+      $("#error-message").text("");
+      cachePath(name);
+    }
+
   })
 
   $(".get-path-button").click(function() {

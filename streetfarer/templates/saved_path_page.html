@@ -6,8 +6,8 @@
 {% endblock title %}
 
 {% block undermap_content %}
-<div class="container">
 <h1>Saved paths</h1>
+<div class="container button-container">
   {% for path in paths %}
     <button class="get-path-button rounded-button float-left label radio-toggle" value="{{path}}">{{path}}</button>
   {% endfor %}

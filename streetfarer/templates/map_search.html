@@ -17,17 +17,17 @@ Streetfinder Map Search
 <script src={% static "js/menu.js" %}></script>
 <script type="text/javascript">
 $(function() {
-  $('input[type="range"]').on('change', function(e) {
+  $('#distance_slider_value').on('change', function(e) {
     var _val = $(this).val();
-    $(this).next('span').text(_val);
-  });
+    $("#minute").text(_val);
+  })
 })
 </script>
 {% endblock page_scripts %}
 
   {% block distance_indicator %}
 
-
+{#  #}
 
 <div id="header">
   <div id="header_top">
@@ -41,30 +41,50 @@ $(function() {
           </div>
           <img id="run_icon" src="{% static "icons/run_icon.png" %}">
         </div>
-        <div id="select_tooltip" style="display: block;">
-          <div class="arrowup" id="select_tooltip_arrow"></div>
-          Would you like to <br> run or walk?
+
+        <div id="select_tooltip" class="tooltip" style="display: block;">
+          <div class="arrowup tooltip-arrow"></div>
+          Run or walk?
         </div>
       </div>
+
       <input type="checkbox" id="walking_check" checked=true hidden></input>
 
-      <div class="divider"></div>
+      {# <div class="divider"></div> #}
       <div id="select_btn">
         <div id="distance_slider"> {# Fix overflow width #}
-          <input id="distance_slider_value" type="range" min="30" max="90" value="60"/>
+          <input id="distance_slider_value" type="range" min="30" max="120" value="60"/>
+          <div class="label_1">MIN</div>
           <span for=fader id="minute">60</span>
-          <div class="label_1">TIME/MIN</div>
-          </div>
+        </div>
+
       </div>
-      <div class="divider"></div>
+      <div id="distance-slider-tooltip" class="tooltip" style="display: block;">
+        <div class="arrowup tooltip-arrow"></div>
+        How long?
+        </div>
+        </div>
+
+      {# <div class="divider"></div> #}
 
       <!---refresh button & save button-->
-
-      <div id="save_refresh_btn">
-        <button id="refresh_btn" class="label rounded-button">REFRESH</button>
+      <button id="refresh-btn" class="label rounded-button topbar-button">REFRESH</button>
+      <div id="path-name-div" class="float-left">
+        <input id="path-name-input" type="text" placeholder="Name of path">
+        <div id="error-message"></div>
       </div>
-      <div id="save_refresh_btn">
-        <button id="save_btn" class="label rounded-button">SAVE</button>
+
+      <button id="save_btn" class="label rounded-button topbar-button">SAVE</button>
+
+      <div id="refresh-tooltip" class="tooltip">
+        <div class="arrowup tooltip-arrow"></div>
+        Get a new path!
+        </div>
+      </div>
+      <div id="save-tooltip" class="tooltip">
+        <div class="arrowup tooltip-arrow"></div>
+        Save your path.
+        </div>
       </div>
     </div>
   </div>
@@ -74,7 +94,7 @@ $(function() {
 
 {% block undermap_content %}
 {# Add a whole bunch of buttons #}
-  <div class="container tag-container">
+  <div class="container button-container">
     {% for tag in tag_list %}
     {# Note that if button is active, it will have an "active" class #}
       <button class="place-tag rounded-button float-left label check-toggle" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
