@@ -10,6 +10,7 @@ $(function() {
   var start = new google.maps.LatLng(0, 0);
   var distance = 0;
   var tags = [];
+  var pathStatus = null;
 
   var pathList = [] //used to store the ids of places in stored paths
 
@@ -177,6 +178,7 @@ $(function() {
     };
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
+        pathStatus = status;
         directionsDisplay.setDirections(response);
       } else {
       }
@@ -229,7 +231,8 @@ $(function() {
 
     //Need to save path
   $("#save_btn").click(function() {
-    cachePath();
+    if(pathStatus == google.maps.DirectionsStatus.OK)
+      cachePath();
   })
 
   $(".get-path-button").click(function() {
