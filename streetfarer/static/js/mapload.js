@@ -14,6 +14,9 @@ $(function() {
 
   var pathList = [] //used to store the ids of places in stored paths
 
+  //Searchbox variables
+  var sbMarkers = [];
+
   // CSRF stuff using jQuery
   function getCookie(name) {
       var cookieValue = null;
@@ -53,10 +56,21 @@ $(function() {
       center: cambridge,
       zoom: 2
     });
+
+     // Create the search box and link it to the UI element.
+    var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    if(input)
+      searchboxInit(input);
+
     var refreshButton = document.getElementById('refresh-btn');
     if (refreshButton) {
       refreshButton.addEventListener("click", function(event){
         event.preventDefault();
+        //var inputStart = document.getElementById('pac-input').value; //Don't need this
+        var inputStart = start;
         var inputTime = document.getElementById('distance_slider_value').value;
         var inputWalking = document.getElementById('walking_check').checked;
         var inputDist = 0;
@@ -66,11 +80,8 @@ $(function() {
         else{
           inputDist = inputTime/60*5*1609.344;
         }
-        var inputStart = "Cambridge, MA";
-        var inputTags = getActiveTags();
-        geocodeService.geocode({address:inputStart, region:"US"}, function(results, status){
-          geocodingCallback(results, status, inputDist, inputTags);
-        });
+
+        genRoute(inputStart, inputDist, getActiveTags())
         return true;
       });
     }
@@ -80,6 +91,67 @@ $(function() {
     infowindow = new google.maps.InfoWindow();
     placesService = new google.maps.places.PlacesService(map);
     //genRoute(cambridge, 5000, ['park', 'restaurant', 'cafe']);
+  }
+
+  function searchboxInit(inputBox){
+    var searchBox = new google.maps.places.SearchBox(
+    /** @type {HTMLInputElement} */(inputBox));
+
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects an item from the
+  // pick list. Retrieve the matching places for that item.
+  google.maps.event.addListener(searchBox, 'places_changed', function() {
+    var places = searchBox.getPlaces();
+    if(places.length>0){
+      for (var i = 0, marker; marker = sbMarkers[i]; i++) {
+        marker.setMap(null);
+      }
+
+
+
+      // For each place, get the icon, place name, and location.
+      sbMarkers = [];
+      var bounds = new google.maps.LatLngBounds();
+      //for (var i = 0, place; place = places[i]; i++) { //UNCOMMENT FOR SHOWING ALL RESULTS
+      var sbPlace = places[0];
+
+       inputBox.value = sbPlace.formatted_address;
+       start = sbPlace.geometry.location;
+
+        var image = {
+          url: sbPlace.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+
+        // Create a marker for each place.
+        var marker = new google.maps.Marker({
+          map: map,
+          icon: image,
+          title: sbPlace.name,
+          position: sbPlace.geometry.location
+        });
+
+        sbMarkers.push(marker);
+
+        bounds.extend(sbPlace.geometry.location);
+
+
+      map.fitBounds(bounds);
+  }
+  });
+  // [END region_getplaces]
+
+  // Bias the SearchBox results towards places that are within the bounds of the
+  // current map's viewport.
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+  });
+
+
   }
 
   function geocodingCallback(results, status, distance, tags){
@@ -221,10 +293,10 @@ $(function() {
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-   // Attach a click listener to refresh_map button
-  $("#refresh-map").click(function() {
-    genRoute(null, null, getActiveTags());
-  });
+   // Attach a click listener to refresh_map button; NOTE: already done in initialize(), do we need to move it down here?
+  /*$("#refresh-map").click(function() {
+    genRoute(start, dist, getActiveTags());
+  });*/
 
 
 

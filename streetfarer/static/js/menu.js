@@ -18,6 +18,22 @@ $(document).ready(function() {
 		$('#select_tooltip').hide();
 	})
 
+	$('#distance_slider').mouseover(function(){
+		$(this).css('backgroundImage','-webkit-linear-gradient(bottom, #FFFFFF 0%, #e6e6e6 100%)');
+		$('#distance-slider-tooltip').show();
+	}).mouseout(function(){
+		$(this).css('backgroundImage', 'none');
+		$('#distance-slider-tooltip').hide();
+	})
+
+	$('#refresh-btn').mouseover(function(){
+		$(this).css('backgroundImage','-webkit-linear-gradient(bottom, #FFFFFF 0%, #e6e6e6 100%)');
+		$('#refresh-tooltip').show();
+	}).mouseout(function(){
+		$(this).css('backgroundImage', 'none');
+		$('#refresh-tooltip').hide();
+	})
+
 
 	//toggle
 	$('#select_btn').click(function(){
