@@ -194,10 +194,10 @@ def _login_ajax(request):
 def is_logged_in(request):
     if request.user.is_authenticated():
         message = {
-            "message": "Is logged in"
+            "message": "true"
         }
     else:
         message = {
-            "message": "Not logged in"
+            "message": "false"
         }
     return HttpResponse(content=json.dumps(message), content_type="application/json")

@@ -42,7 +42,7 @@
     </div>
 
     <div id="login_register" class="header-float-right toggle-login">
-      <a class="label">Login</a>
+      <a id="login-link" class="label">Login</a>
     </div>
 
     <div id="saved_path" class="header-float-right">
@@ -65,12 +65,47 @@
     {% block hidden_login %}
   <script>
       $(function() {
+
+        var isLoggedIn = false;
+
         function printLoginStatus(data, textStatus, xhr) {
-          console.log(data)
           if (data.status === 'error') {
             $('#login-status').text(data.message)
           } else if (data.status === 'success') {
-            $('.login-parcel').toggle()
+            $('.login-parcel').toggle();
+            changeLoginToLogout()
+          }
+        }
+
+        function printSignupStatus(data, textStatus, xhr) {
+          if (data.status == 'error') {
+            $('#signup-status').text(data.message)
+          } else if (data.status === 'success') {
+            $('.login-parcel').toggle();
+            changeLoginToLogout()
+          }
+        }
+
+        function changeLoginToLogout() {
+          // Changes the text and link of the login/logout button
+          $("#login-link").text("Logout").attr("href", "/logout/");
+        }
+
+        function checkLoggedIn() {
+          // Ask server whether we're logged in
+          $.ajax({
+            type: 'GET',
+            url: '/isloggedin/',
+            success: _checkLoggedIn,
+          });
+        }
+
+        function _checkLoggedIn(data) {
+          if (data.message === "true") {
+            isLoggedIn = true;
+            changeLoginToLogout()
+          } else {
+            isLoggedIn = false;
           }
         }
 
@@ -80,15 +115,6 @@
           success: printLoginStatus,
           });
 
-        function printSignupStatus(data, textStatus, xhr) {
-          console.log(data)
-          if (data.status == 'error') {
-            $('#signup-status').text(data.message)
-          } else if (data.status === 'success') {
-            $('.login-parcel').toggle()
-          }
-        }
-
         $('#signup-form').ajaxForm({
           url: '/user/signup/ajax',
           type: 'POST',
@@ -96,9 +122,13 @@
           });
 
         $('.toggle-login').click(function() {
-          console.log("in function")
           $('.login-parcel').toggle();
         })
+
+        // If user is logged in and refreshes page, changes the login topbar to logout
+        checkLoggedIn()
+
+
       })
   </script>
 
