@@ -4,6 +4,19 @@
 {% block section_scripts %}
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
   <script src={% static "js/mapload.js" %}></script>
+  <script>
+    // $(function() {
+    //   function displayPath(data, textStatus, xhr) {
+    //     console.log(data)
+    //   }
+
+    //   $('#get_path').ajaxForm({
+    //     url: '/path/',
+    //     type: 'GET',
+    //     success: displayPath,
+    //     });
+    // })
+  </script>
   {% block page_scripts %}
   {% endblock page_scripts %}
 {% endblock section_scripts %}
@@ -49,19 +62,6 @@
     {# <button class="" id="refresh-map">Refresh map</button> #}
     {# <button id="save-path">Save path</button> #}
     {# Form for testing purposes #}
-    <script>
-      $(function() {
-        function displayPath(data, textStatus, xhr) {
-          console.log(data)
-        }
-
-        $('#get_path').ajaxForm({
-          url: '/path/',
-          type: 'GET',
-          success: displayPath,
-          });
-      })
-    </script>
      {# <form action="" id="get_path"> #}
       {# <input type="text" name="path-name"> #}
       {# <input type="submit" value="Get Path"> #}

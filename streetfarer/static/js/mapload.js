@@ -107,9 +107,6 @@ $(function() {
       for (var i = 0, marker; marker = sbMarkers[i]; i++) {
         marker.setMap(null);
       }
-
-
-
       // For each place, get the icon, place name, and location.
       sbMarkers = [];
       var bounds = new google.maps.LatLngBounds();
@@ -347,10 +344,5 @@ $(function() {
   $(".get-path-button").click(function() {
     getPathFromID($(this).attr("value"))
   })
-
-  // Good enough UI effect
-  // setTimeout(function() {
-  //   $("#map-creation-bar *").slideUp("fast")
-  // }, 2000)
 
 })

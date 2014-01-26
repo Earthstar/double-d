@@ -34,6 +34,11 @@ $(document).ready(function() {
 	})
 
 
+  $('#distance_slider_value').on('change', function(e) {
+    var _val = $(this).val();
+    $("#minute").text(_val);
+  })
+
 	//toggle
 	$('#select_btn').click(function(){
 		if (check == 1){
@@ -55,9 +60,5 @@ $(document).ready(function() {
 	})
 //document ready
 });
-
-
-
-
 
 

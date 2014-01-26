@@ -12,9 +12,12 @@ from django.template.loader import get_template
 from pathgenerator.models import UserForm
 
 def home(request):
-    t = get_template('home.html')
-    html = t.render(Context({}))
-    return HttpResponse(html)
+    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo", "bar",
+        "florist", "movie_theater", "museum", "night_club", "library",
+        "aquarium", "liquor_store"],
+        "login_form": UserForm()}
+    c.update(csrf(request))
+    return render_to_response('home.html', c)
 
 def add_user(request):
     '''

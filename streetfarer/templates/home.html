@@ -1,47 +1,17 @@
-{% extends "base.html" %}
+{% extends "base_map.html" %}
 {% load staticfiles %}
 
-{% block section_scripts %}
+{% block page_scripts %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 <script src={% static "js/home_tutorial.js" %}></script>
 <script src={% static "js/menu.js" %}></script>
 <script src={% static "js/mapload.js" %}></script>
-{% endblock section_scripts %}
+{% endblock page_scripts %}
 
-{% block section_css %}
-  <style>
-#map-canvas {
-  height: 60vh; /*Use vh instead of % so we can use this in container*/
-  /*width: 830px;*/
-  margin: 0px;
-  padding: 0px
-}
-#pac-input {
-  background-color: #fff;
-  padding: 0 11px 0 13px;
-  width: 400px;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  text-overflow: ellipsis;
-}
+{% block page_css %}
+{% endblock page_css %}
 
-#pac-input:focus {
-  border-color: #4d90fe;
-  margin-left: -1px;
-  padding-left: 14px;  /* Regular padding-left + 1. */
-  width: 401px;
-}
-
-.pac-container {
-  font-family: Roboto;
-}
-</style>
-{% endblock section_css %}
-
-{% block content %}
-
-  {% block distance_indicator %}
+{% block distance_indicator %}
 <div id="map-creation-bar" class="header">
   <div id="header_top">
     <div class="container">
@@ -103,10 +73,9 @@
     </div>
   </div>
 </div>
-    <!--header-->
   {% endblock distance_indicator %}
 
-  {% block carousel_tutorial %}
+  {% block map %}
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -150,6 +119,7 @@
 
       <div class="carousel-caption">
         <p class="large-text">Where do you want to start?</p>
+        <input id="pac-input" class="controls" type="text" placeholder="Type in address to start jogging!">
       </div>
     </div>
     <div class="item" id="map-container">
@@ -168,6 +138,14 @@
   </a>
 </div>
 
-  {% endblock carousel_tutorial %}
+  {% endblock map %}
 
-{% endblock content %}
+  {% block undermap_content %}
+{# Add a whole bunch of buttons #}
+  <div class="container button-container place-tag-container">
+    {% for tag in tag_list %}
+    {# Note that if button is active, it will have an "active" class #}
+      <button class="place-tag rounded-button float-left label check-toggle" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
+    {% endfor %}
+  </div>
+{% endblock undermap_content %}

@@ -2,6 +2,8 @@ $(function() {
   var start;
   var mapOnScreen = false;
 
+  var elementsToToggleOnMapAppearance = "#map-creation-bar *, .place-tag-container, .place-tag-container > *";
+
   cambridge  = new google.maps.LatLng(42.356448, -71.108212);
 
   map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -20,27 +22,30 @@ $(function() {
 
   // Constantly updates whether map on screen?
   // Triggers events?
+  // TODO make event triggers better
   setInterval(function() {
     console.log("in polling function");
     var mapOnScreenNow = isMapOnScreen()
     if ((mapOnScreen) && (!mapOnScreenNow)) {
       // Map no longer on screen, trigger mapoff event
       console.log("trigger mapdisappear")
-      $("#map-creation-bar *").trigger("mapdisappear")
+      $(elementsToToggleOnMapAppearance).trigger("mapdisappear")
     } else if ((!mapOnScreen) && (mapOnScreenNow)) {
       console.log("trigger mapappear")
-      $("#map-creation-bar *").trigger("mapappear")
+      $(elementsToToggleOnMapAppearance).trigger("mapappear")
       // refresh map
       google.maps.event.trigger(map, 'resize')
     }
     mapOnScreen = mapOnScreenNow;
-  },1000)
+  },100)
 
   function isMapOnScreen() {
     return ($("#map-container").offset().top > 0)
   }
 
-  $("#map-creation-bar *").on("mapappear", function() {
+  // If the map is on the screen, trigger the resize event and pull down the menu
+  // If the map is not on the screen, pull up the menu
+  $(elementsToToggleOnMapAppearance).on("mapappear", function() {
     $(this).slideDown("fast")
     // Hide the checkbox
     $("[hidden]").hide();
@@ -48,14 +53,7 @@ $(function() {
     $(this).slideUp("fast")
   })
 
-  $("#map-creation-bar *").slideUp("fast")
+  $(elementsToToggleOnMapAppearance).hide("fast")
 
-  // // Good enough UI effect
-  // setTimeout(function() {
-  //   $("#map-creation-bar *").slideUp("fast")
-  // }, 2000)
-
-  // If the map is on the screen, trigger the resize event and pull down the menu
-  // If the map is not on the screen, pull up the menu
 
 })
