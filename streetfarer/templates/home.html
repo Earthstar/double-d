@@ -9,6 +9,11 @@
 {% endblock page_scripts %}
 
 {% block page_css %}
+<style>
+ /* #preset-tag-container button{
+  margin: 20px;
+  }*/
+</style>
 {% endblock page_css %}
 
 {% block distance_indicator %}
@@ -101,16 +106,16 @@
       <img src="{% static "images/dublin_night_blur_yeowatzup_3-1.png" %}" alt="Second slide">
       <div class="carousel-caption">
         <p class="large-text">What describes you?</p>
-        <div>
-          <div>
-            <button class="btn-lg" style="float: left">Hipster</button>
-            <button class="btn-lg" style="float: left">Stylish</button>
-            <button class="btn-lg" style="float: left">Boring</button>
+        <div id="preset-tag-container">
+          <div class="row">
+            <button class="rounded-button col-md-4" style="float: left">Hipster</button>
+            <button class="rounded-button col-md-4" style="float: left">Stylish</button>
+            <button class="rounded-button col-md-4" style="float: left">Boring</button>
           </div>
-          <div>
-            <button class="btn-lg" style="float: left">Hipster</button>
-            <button class="btn-lg" style="float: left">Stylish</button>
-            <button class="btn-lg" style="float: left">Boring</button>
+          <div class="row">
+            <button class="rounded-button col-md-4" style="float: left">Hipster</button>
+            <button class="rounded-button col-md-4" style="float: left">Stylish</button>
+            <button class="rounded-button col-md-4" style="float: left">Boring</button>
           </div>
         </div>
       </div>
