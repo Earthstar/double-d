@@ -16,6 +16,23 @@ Streetfinder Map Search
 {% block page_scripts %}
 <script src={% static "js/menu.js" %}></script>
 <script type="text/javascript">
+$("[title]").tooltip({ track: true });
+</script>
+<style type="text/css">
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip {
+    display:none;
+    background:transparent url(https://dl.dropboxusercontent.com/u/25819920/tooltip/black_arrow.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#fff;
+}
+</style>
+
+<script type="text/javascript">
 $(function() {
   $('#distance_slider_value').on('change', function(e) {
     var _val = $(this).val();
@@ -33,7 +50,7 @@ $(function() {
   <div id="header_top">
     <div class="container">
       <!-- vertical line <div class="divider"></div> -->
-      <div id="select_btn">
+      <div id="select_btn" title="Run or walk?">
         <div id="shape">
           <img id="walk_icon" src="{% static "icons/walk_icon.png" %}">
           <div id="slider">
@@ -42,26 +59,27 @@ $(function() {
           <img id="run_icon" src="{% static "icons/run_icon.png" %}">
         </div>
 
-        <div id="select_tooltip" class="tooltip" style="display: block;">
+        <!--<div id="select_tooltip" class="tooltip" style="display: block;">
           <div class="arrowup tooltip-arrow"></div>
           Run or walk?
-        </div>
+        </div>-->
       </div>
 
       <input type="checkbox" id="walking_check" checked=true hidden></input>
 
       {# <div class="divider"></div> #}
       <div id="select_btn">
-        <div id="distance_slider"> {# Fix overflow width #}
+        <div id="distance_slider" title="How long?"> {# Fix overflow width #}
           <input id="distance_slider_value" type="range" min="30" max="120" value="60" step="15"/>
           <div class="label_1">MIN</div>
           <span for=fader id="minute">60</span>
         </div>
-        <div id="distance-slider-tooltip" class="tooltip" style="display: block;">
+
+      </div>
+       <!---<div id="distance-slider-tooltip" class="tooltip" style="display: block;">
           <div class="arrowup tooltip-arrow"></div>
           How long?
-        </div>
-      </div>
+        </div>--->
 
         </div>
 
@@ -69,7 +87,14 @@ $(function() {
 
 
       <!---refresh button & save button-->
-      <button id="refresh-btn" class="label rounded-button topbar-button">NEW PATH</button>
+
+      <div id="refresh-div">
+        <button id="refresh-btn" title="Get a new path!" class="label rounded-button topbar-button">NEW PATH</button>
+        <!---<div id="refresh-tooltip" class="tooltip">
+        <div class="arrowup tooltip-arrow"></div>
+        Get a new path!
+        </div>-->
+      </div>
       <div id="path-name-div" class="float-left">
         <input id="path-name-input" type="text" placeholder="Name of path">
         <div id="error-message"></div>
@@ -77,11 +102,7 @@ $(function() {
 
       <button id="save_btn" class="label rounded-button topbar-button">SAVE</button>
 
-      <div id="refresh-tooltip" class="tooltip">
-        <div class="arrowup tooltip-arrow"></div>
-        Get a new path!
-        </div>
-      </div>
+
       <div id="save-tooltip" class="tooltip">
         <div class="arrowup tooltip-arrow"></div>
         Save your path.
