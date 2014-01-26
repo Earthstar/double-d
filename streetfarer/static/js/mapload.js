@@ -140,6 +140,7 @@ $(function() {
 
 
       map.fitBounds(bounds);
+      map.setZoom(15);
   }
   });
   // [END region_getplaces]
