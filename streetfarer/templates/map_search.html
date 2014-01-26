@@ -53,19 +53,20 @@ $(function() {
       {# <div class="divider"></div> #}
       <div id="select_btn">
         <div id="distance_slider"> {# Fix overflow width #}
-          <input id="distance_slider_value" type="range" min="30" max="120" value="60"/>
+          <input id="distance_slider_value" type="range" min="30" max="120" value="60" step="15"/>
           <div class="label_1">MIN</div>
           <span for=fader id="minute">60</span>
         </div>
-
-      </div>
-      <div id="distance-slider-tooltip" class="tooltip" style="display: block;">
-        <div class="arrowup tooltip-arrow"></div>
-        How long?
+        <div id="distance-slider-tooltip" class="tooltip" style="display: block;">
+          <div class="arrowup tooltip-arrow"></div>
+          How long?
         </div>
+      </div>
+
         </div>
 
       {# <div class="divider"></div> #}
+
 
       <!---refresh button & save button-->
       <button id="refresh-btn" class="label rounded-button topbar-button">REFRESH</button>
