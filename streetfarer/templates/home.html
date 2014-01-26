@@ -9,11 +9,6 @@
 {% endblock page_scripts %}
 
 {% block page_css %}
-<style>
- /* #preset-tag-container button{
-  margin: 20px;
-  }*/
-</style>
 {% endblock page_css %}
 
 {% block distance_indicator %}
@@ -94,34 +89,33 @@
   <div class="carousel-inner">
   {# Note: can trigger carousel to move if you use active class #}
     <div class="item active" id="intro-container">
-      <img src="{% static "images/feet_walking_yeowatzup_3-1.png" %}" alt="First slide">
+      <img src="{% static "images/feet_walking_yeowatzup_185-1.png" %}" alt="First slide">
       <div class="carousel-caption">
-        <p class="large-text">Walk the city</p>
-        <p class="large-text">Run the city</p>
-        <p class="large-text">Find new places with Streetfarer</p>
+        <p class="large-text">Explore your city with Streetfarer</p>
         <button class="btn">Explore</button>
       </div>
     </div>
     <div class="item" id="preset-tag-container">
-      <img src="{% static "images/dublin_night_blur_yeowatzup_3-1.png" %}" alt="Second slide">
+      <img src="{% static "images/dublin_night_blur_yeowatzup_185-1.png" %}" alt="Second slide">
       <div class="carousel-caption">
         <p class="large-text">What describes you?</p>
         <div id="preset-tag-container">
           <div class="row">
-            <button class="rounded-button col-md-4" style="float: left">Hipster</button>
-            <button class="rounded-button col-md-4" style="float: left">Stylish</button>
-            <button class="rounded-button col-md-4" style="float: left">Boring</button>
+            <button class="col-md-4" style="float: left">Hipster</button>
+            <button class="col-md-4" style="float: left">Stylish</button>
+            <button class="col-md-4" style="float: left">Boring</button>
           </div>
+          {# There's some weirdness when the page is too big #}
           <div class="row">
-            <button class="rounded-button col-md-4" style="float: left">Hipster</button>
-            <button class="rounded-button col-md-4" style="float: left">Stylish</button>
-            <button class="rounded-button col-md-4" style="float: left">Boring</button>
+            <button class="col-md-4" style="float: left">Hipster</button>
+            <button class="col-md-4" style="float: left">Stylish</button>
+            <button class="col-md-4" style="float: left">Boring</button>
           </div>
         </div>
       </div>
     </div>
     <div class="item" id="search-container">
-      <img id="placeholder" src="{% static "images/dublin_backlit_yeowatzup_3-1.png" %}" >
+      <img id="placeholder" src="{% static "images/dublin_backlit_yeowatzup_185-1.png" %}" >
       <div class="carousel-caption">
         <p class="large-text">Where do you want to start?</p>
         <input id="pac-input" class="controls" type="text" placeholder="Type in address to start jogging!">

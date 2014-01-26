@@ -64,9 +64,9 @@
 
     {% block hidden_login %}
   <script>
+  // Global variable
+  var isLoggedIn = false;
       $(function() {
-
-        var isLoggedIn = false;
 
         function printLoginStatus(data, textStatus, xhr) {
           if (data.status === 'error') {
@@ -74,6 +74,8 @@
           } else if (data.status === 'success') {
             $('.login-parcel').toggle();
             changeLoginToLogout()
+            // Clear login screen
+            $("#login-container input").val("")
           }
         }
 
@@ -89,6 +91,7 @@
         function changeLoginToLogout() {
           // Changes the text and link of the login/logout button
           $("#login-link").text("Logout").attr("href", "/logout/");
+          isLoggedIn = true;
         }
 
         function checkLoggedIn() {
@@ -122,12 +125,15 @@
           });
 
         $('.toggle-login').click(function() {
-          $('.login-parcel').toggle();
+          // Only toggle if logged in
+          if (!isLoggedIn) {
+            console.log("not logged in")
+            $('.login-parcel').toggle();
+          }
         })
 
         // If user is logged in and refreshes page, changes the login topbar to logout
         checkLoggedIn()
-
 
       })
   </script>
