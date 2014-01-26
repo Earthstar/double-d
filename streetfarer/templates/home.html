@@ -12,6 +12,8 @@
 {% endblock page_css %}
 
 {% block distance_indicator %}
+{# Hack to keep this hidden #}
+<input type="checkbox" id="walking_check" checked=true hidden></input>
 <div id="map-creation-bar" class="header">
   <div id="header_top">
     <div class="container">
@@ -30,8 +32,6 @@
           Run or walk?
         </div>
       </div>
-
-      <input type="checkbox" id="walking_check" checked=true hidden></input>
 
       {# <div class="divider"></div> #}
       <div id="select_btn">
@@ -89,7 +89,7 @@
   <div class="carousel-inner">
   {# Note: can trigger carousel to move if you use active class #}
     <div class="item active" id="intro-container">
-      <img src="{% static "icons/walk_icon.png" %}" width="500px" height="60vh" alt="First slide">
+      <img src="{% static "images/feet_walking_yeowatzup_3-1.png" %}" alt="First slide">
       <div class="carousel-caption">
         <p class="large-text">Walk the city</p>
         <p class="large-text">Run the city</p>
@@ -98,7 +98,7 @@
       </div>
     </div>
     <div class="item" id="preset-tag-container">
-      <img src="{% static "icons/run_icon.png" %}"  width="500px" height="60vh" alt="Second slide">
+      <img src="{% static "images/dublin_night_blur_yeowatzup_3-1.png" %}" alt="Second slide">
       <div class="carousel-caption">
         <p class="large-text">What describes you?</p>
         <div>
@@ -116,7 +116,7 @@
       </div>
     </div>
     <div class="item" id="search-container">
-
+      <img id="placeholder" src="{% static "images/dublin_backlit_yeowatzup_3-1.png" %}" >
       <div class="carousel-caption">
         <p class="large-text">Where do you want to start?</p>
         <input id="pac-input" class="controls" type="text" placeholder="Type in address to start jogging!">

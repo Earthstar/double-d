@@ -16,7 +16,6 @@ $(function() {
   // Hack to get google map to appear.
   $(".carousel-control").click(function() {
     setTimeout(function() {
-
     }, 100)
   })
 
@@ -37,7 +36,7 @@ $(function() {
       google.maps.event.trigger(map, 'resize')
     }
     mapOnScreen = mapOnScreenNow;
-  },100)
+  },500)
 
   function isMapOnScreen() {
     return ($("#map-container").offset().top > 0)
@@ -46,11 +45,11 @@ $(function() {
   // If the map is on the screen, trigger the resize event and pull down the menu
   // If the map is not on the screen, pull up the menu
   $(elementsToToggleOnMapAppearance).on("mapappear", function() {
-    $(this).slideDown("fast")
+    $(elementsToToggleOnMapAppearance).slideDown("fast");
     // Hide the checkbox
     $("[hidden]").hide();
   }).on("mapdisappear", function() {
-    $(this).slideUp("fast")
+      $(this).slideUp("fast")
   })
 
   $(elementsToToggleOnMapAppearance).hide("fast")
