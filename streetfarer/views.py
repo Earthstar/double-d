@@ -190,3 +190,14 @@ def _login_ajax(request):
             "message": "Wrong request method"
         }
         return message
+
+def is_logged_in(request):
+    if request.user.is_authenticated():
+        message = {
+            "message": "Is logged in"
+        }
+    else:
+        message = {
+            "message": "Not logged in"
+        }
+    return HttpResponse(content=json.dumps(message), content_type="application/json")

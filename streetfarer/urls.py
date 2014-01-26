@@ -3,7 +3,7 @@ from django.contrib.auth.views import login
 from django.conf import settings
 from django.conf.urls.static import static
 from pathgenerator.views import map_page, mapsearch_page, place, path, saved_path_page
-from streetfarer.views import add_user, secret, logout_page, harmony, mockup, login_ajax, signup_ajax
+from streetfarer.views import add_user, secret, logout_page, harmony, mockup, login_ajax, signup_ajax, is_logged_in
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^map/$', map_page),
     url(r'^map/search/$', mapsearch_page),
     # url(r'^login/$', login),
-    # url(r'^logout/$', logout_page),
+    url(r'^logout/$', logout_page),
     # url(r'^adduser/$', add_user),
     url(r'^secret/$', secret),
     url(r'^harmony/$', harmony),
@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^user/paths/$', saved_path_page),
     url(r'^login/ajax/$', login_ajax),
     url(r'^user/signup/ajax$', signup_ajax),
+    url(r'^isloggedin/$', is_logged_in),
     # Examples:
     # url(r'^$', 'streetfarer.views.home', name='home'),
 
