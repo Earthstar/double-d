@@ -8,7 +8,6 @@ $(document).ready(function() {
 	var comp= null;
 	var eraseCheck = 0;
 
-
 	//hover over
 	$('#select_btn').mouseover(function(){
 		$(this).css('backgroundImage','-webkit-linear-gradient(bottom, #FFFFFF 0%, #e6e6e6 100%)');
@@ -52,15 +51,8 @@ $(document).ready(function() {
 			$('#run_icon').css('opacity', '.5');
 			document.getElementById('walking_check').checked = true;
 			check = 1;
-
-
 		}
 	})
-
-
-
-
-
 //document ready
 });
 
