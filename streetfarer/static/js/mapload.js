@@ -297,16 +297,6 @@ $(function() {
     calcRoute(_start, waypoints);
   }
 
-  // Selects tag buttons
-  // Used for feature selection
-  // tags is a list of strings
-  function selectTag(tags) {
-    for (var i = 0; i < tags.length; i++) {
-      var tag = tags[i]
-      $("#"+tag+".place-tag").click()
-    }
-  }
-
   function displayError() {
     // Displays error on screen, most likely because internet down
     console.log("Couldn't load path")
@@ -318,8 +308,6 @@ $(function() {
   /*$("#refresh-map").click(function() {
     genRoute(start, dist, getActiveTags());
   });*/
-
-
 
   //Need to save path
   // Could be hacked. Need to sanitize inputs.

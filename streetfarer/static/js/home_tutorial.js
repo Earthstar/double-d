@@ -3,6 +3,19 @@ $(function() {
   var mapOnScreen = false;
   var elementsToToggleOnMapAppearance = "#map-creation-bar, .place-tag-container";
 
+  var tagGroups = {
+    hipster: ["art_gallery", "bicycle_store", "cafe", "book_store"],
+    natureLover: ["aquarium", "park", "pet_store", "campground", "zoo"],
+    morbid: ["cemetery", "funeral_home", "liquor_store", "hospital"],
+    stylish: ["beauty_salon", "clothing_store", "florist", "hair_care",
+    "jewelry_store", "shoe_store", "shopping_mall", "spa", "department_store"],
+    boring: ["accounting", "atm", "bank", "courthouse", "finance",
+    "insurance_agency", "lawyer", "parking", "post_office", "storage"],
+    partyAnimal: ["bar", "casino", "night_club", "amusement_park"]
+  }
+
+  // The names of the tags which should be selected initially
+  var initialTags = [];
 
   cambridge  = new google.maps.LatLng(42.356448, -71.108212);
 
@@ -35,13 +48,27 @@ $(function() {
         console.log("trigger mapappear")
       $(elementsToToggleOnMapAppearance).trigger("mapappear")
       // refresh map
-    }, 1000)
+    }, 500)
     }
     mapOnScreen = mapOnScreenNow;
   }, 500)
 
   function isMapOnScreen() {
     return ($("#map-container").offset().top > 0)
+  }
+
+  function isSavedPathMapOnScreen() {
+    // TODO
+  }
+
+  // Selects tag buttons
+  // Used for feature selection
+  // tags is a list of strings
+  function selectTag(tags) {
+    for (var i = 0; i < tags.length; i++) {
+      var tag = tags[i]
+      $("#"+tag+".place-tag").addClass("active")
+    }
   }
 
   // If the map is on the screen, trigger the resize event and pull down the menu

@@ -76,13 +76,13 @@
   {% endblock distance_indicator %}
 
   {% block map %}
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+    <div id="tutorial-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#tutorial-carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#tutorial-carousel" data-slide-to="1"></li>
+    <li data-target="#tutorial-carousel" data-slide-to="2"></li>
+    <li data-target="#tutorial-carousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -101,14 +101,14 @@
         <p class="large-text">What describes you?</p>
         <div id="preset-tag-container">
           <div class="row">
-            <button class="col-md-4" style="float: left">Hipster</button>
+            <button class="col-md-4" style="float: left">Nature-lover</button>
             <button class="col-md-4" style="float: left">Stylish</button>
-            <button class="col-md-4" style="float: left">Boring</button>
+            <button class="col-md-4" style="float: left">Morbid</button>
           </div>
-          {# There's some weirdness when the page is too big #}
+          {# There's some weirdness when the page is too big, above ~900px #}
           <div class="row">
             <button class="col-md-4" style="float: left">Hipster</button>
-            <button class="col-md-4" style="float: left">Stylish</button>
+            <button class="col-md-4" style="float: left">Party-animal</button>
             <button class="col-md-4" style="float: left">Boring</button>
           </div>
         </div>
@@ -126,13 +126,14 @@
       <div class="carousel-caption">
       </div>
     </div>
+    {# TODO: add saved tag slide #}
   </div>
 
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+  <a class="left carousel-control" href="#tutorial-carousel" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
-  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+  <a class="right carousel-control" href="#tutorial-carousel" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>
