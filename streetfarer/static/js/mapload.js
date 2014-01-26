@@ -51,7 +51,7 @@ $(function() {
 
   function initialize() {
     cambridge  = new google.maps.LatLng(42.356448, -71.108212);
-
+    formatTagTitles();
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: cambridge,
       zoom: 2
@@ -96,6 +96,7 @@ $(function() {
   function searchboxInit(inputBox){
     var searchBox = new google.maps.places.SearchBox(
     /** @type {HTMLInputElement} */(inputBox));
+    inputBox.removeAttribute("hidden");
 
   // [START region_getplaces]
   // Listen for the event fired when the user selects an item from the
@@ -263,6 +264,27 @@ $(function() {
       activeTags.push($(this).attr("value"));
     })
     return activeTags;
+  }
+
+  function formatTagTitles(){
+    $(".place-tag").each(function(){
+      var title = $(this).html();
+      var splitTitle = title.split('');
+      var firstLetter = true;
+      for(var i = 0; i<splitTitle.length; i++){
+        if(firstLetter){
+          splitTitle[i] = splitTitle[i].toUpperCase();
+          firstLetter = false;
+        }
+        if(splitTitle[i] == '_'){
+          splitTitle[i] = ' ';
+          firstLetter = true;
+        }
+      }
+      title = splitTitle.join('');
+      $(this).html(title);
+
+    });
   }
 
   function renderPath(data) {
