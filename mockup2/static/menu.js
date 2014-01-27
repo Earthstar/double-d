@@ -10,17 +10,17 @@ $(document).ready(function() {
 	
 
 	//hover over
-	$('#select_btn').mouseover(function(){
+	$('#draw_btn').mouseover(function(){
 		$(this).css('backgroundImage','-webkit-linear-gradient(bottom, #FFFFFF 0%, #e6e6e6 100%)');
-		$('#select_tooltip').show();
+		$('#draw_tooltip').show();
 	}).mouseout(function(){
 		$(this).css('backgroundImage', 'none');
-		$('#select_tooltip').hide();
+		$('#draw_tooltip').hide();
 	})
 	
 
 	//toggle
-	$('#select_btn').click(function(){
+	$('#draw_btn').click(function(){
 		if (check == 1){
 			$('#toggle_dot').css('left', '32px');
 			$('#walk_icon').css({
