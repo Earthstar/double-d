@@ -197,7 +197,7 @@ $(function() {
        for(var i = 0; i<8; i++){
           var ran = Math.floor(Math.random()*length);
           var randomPlace = results[ran];
-          pathList.push({lat:randomPlace.geometry.location.lat(), lng:randomPlace.geometry.location.lng(), id:randomPlace.id});
+          pathList.push({lat:randomPlace.geometry.location.lat(), lng:randomPlace.geometry.location.lng(), id:randomPlace.id, name:randomPlace.name});
           waypoints.push({location:randomPlace.geometry.location, stopover:true});
           results.splice(ran, 1);
           length--;
@@ -258,6 +258,10 @@ $(function() {
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         pathStatus = status;
+        console.log(pathList);
+        for(var i = 1, responseLeg; responseLeg=response.routes[0].legs[i]; i++){
+          responseLeg.start_address=pathList[i-1].name;
+        }
         directionsDisplay.setDirections(response);
       } else {
       }
