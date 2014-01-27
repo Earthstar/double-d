@@ -17,6 +17,8 @@ $(function() {
   //Searchbox variables
   var sbMarkers = [];
 
+  var newPath = false;
+
   // CSRF stuff using jQuery
   function getCookie(name) {
       var cookieValue = null;
@@ -186,6 +188,7 @@ $(function() {
        var length = results.length;
        cachePlaces(results);
        pathList = [];
+       newPath = true;
        for(var i = 0; i<8; i++){
           var ran = Math.floor(Math.random()*length);
           var randomPlace = results[ran];
@@ -216,6 +219,7 @@ $(function() {
     // Reminder: clear pathPlaceIds
     var startJSON = JSON.stringify(start);
     var pathListJSON = JSON.stringify(pathList);
+    newPath = false;
     $.ajax({
       type: 'POST',
       url: '/path/',
@@ -224,8 +228,6 @@ $(function() {
       'name': name,
       'waypoints': pathListJSON}
     });
-
-    pathList = [];
 
   }
 
