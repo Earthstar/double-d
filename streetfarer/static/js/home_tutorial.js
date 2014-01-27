@@ -91,4 +91,9 @@ $(function() {
     selectTag(toSelect)
   })
 
+  // If you finish an action on each page of the carousel, slide to the left
+  $(".slide-right").click(function() {
+    $(".right.carousel-control").click()
+  })
+
 })

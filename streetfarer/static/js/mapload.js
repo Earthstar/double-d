@@ -65,8 +65,9 @@ $(function() {
       document.getElementById('pac-input'));
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputOnMap);
     var inputOnCarousel = document.getElementById('carousel-searchbar')
-    if(inputOnCarousel)
+    if(inputOnCarousel) {
       searchboxInit(inputOnCarousel);
+    }
     if(inputOnMap)
       searchboxInit(inputOnMap);
     searchBoxes.push(inputOnCarousel);
@@ -148,16 +149,23 @@ $(function() {
 
       map.fitBounds(bounds);
       map.setZoom(15);
-  }
-  });
-  // [END region_getplaces]
+    }
+    });
+    // [END region_getplaces]
 
-  // Bias the SearchBox results towards places that are within the bounds of the
-  // current map's viewport.
-  google.maps.event.addListener(map, 'bounds_changed', function() {
-    var bounds = map.getBounds();
-    searchBox.setBounds(bounds);
-  });
+    // Bias the SearchBox results towards places that are within the bounds of the
+    // current map's viewport.
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+      var bounds = map.getBounds();
+      searchBox.setBounds(bounds);
+    });
+
+    // make carousel scroll left upon selection of address
+    if (inputBox.id === "carousel-searchbar") {
+      google.maps.event.addListener(searchBox, 'places_changed', function() {
+        $(".carousel-control.right").click()
+      })
+    }
 
 
   }
