@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block page_scripts %}
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>-->
 <script src={% static "js/home_tutorial.js" %}></script>
 <script src={% static "js/menu.js" %}></script>
 <script src={% static "js/mapload.js" %}></script>
@@ -118,10 +118,11 @@
       <img id="placeholder" src="{% static "images/dublin_backlit_yeowatzup_185-1.png" %}" >
       <div class="carousel-caption">
         <p class="large-text">Where do you want to start?</p>
-        <input id="pac-input" class="controls" type="text" placeholder="Type in address to start jogging!">
+        <input id="carousel-searchbar" class="controls" type="text" placeholder="Type in address to start jogging!">
       </div>
     </div>
     <div class="item" id="map-container">
+     <input id="pac-input" class="controls" type="text" placeholder="Search Box" hidden></input>
       <div id="map-canvas"></div>
       <div class="carousel-caption">
       </div>

@@ -16,6 +16,7 @@ $(function() {
 
   //Searchbox variables
   var sbMarkers = [];
+  var searchBoxes = [];
 
   var newPath = false;
 
@@ -60,12 +61,16 @@ $(function() {
     });
 
      // Create the search box and link it to the UI element.
-    var input = /** @type {HTMLInputElement} */(
+    var inputOnMap = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    if(input)
-      searchboxInit(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputOnMap);
+    var inputOnCarousel = document.getElementById('carousel-searchbar')
+    if(inputOnCarousel)
+      searchboxInit(inputOnCarousel);
+    if(inputOnMap)
+      searchboxInit(inputOnMap);
+    searchBoxes.push(inputOnCarousel);
+    searchBoxes.push(inputOnMap);
 
     var refreshButton = document.getElementById('refresh-btn');
     if (refreshButton) {
@@ -115,7 +120,9 @@ $(function() {
       //for (var i = 0, place; place = places[i]; i++) { //UNCOMMENT FOR SHOWING ALL RESULTS
       var sbPlace = places[0];
 
-       inputBox.value = sbPlace.formatted_address;
+      for(var i = 0, iterSearchBox; iterSearchBox = searchBoxes[i]; i++){
+        iterSearchBox.value = sbPlace.formatted_address;
+      }
        start = sbPlace.geometry.location;
 
         var image = {
