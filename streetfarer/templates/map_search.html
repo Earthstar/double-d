@@ -42,11 +42,8 @@ $(function() {
 </script>
 {% endblock page_scripts %}
 
-  {% block distance_indicator %}
-
-{#  #}
-
-<div id="header">
+{% block distance_indicator %}
+<div id="map-creation-bar" class="header">
   <div id="header_top">
     <div class="container">
       <!-- vertical line <div class="divider"></div> -->
@@ -79,14 +76,14 @@ $(function() {
        <!---<div id="distance-slider-tooltip" class="tooltip" style="display: block;">
           <div class="arrowup tooltip-arrow"></div>
           How long?
-        </div>--->
+        </div>
 
         </div>
 
       {# <div class="divider"></div> #}
 
 
-      <!---refresh button & save button-->
+      refresh button & save button-->
 
       <div id="refresh-div">
         <button id="refresh-btn" title="Get a new path!" class="label rounded-button topbar-button">NEW PATH</button>
@@ -111,7 +108,6 @@ $(function() {
     </div>
   </div>
 </div>
-    <!--header-->
   {% endblock distance_indicator %}
 
 {% block undermap_content %}

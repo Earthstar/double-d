@@ -12,9 +12,17 @@ from django.template.loader import get_template
 from pathgenerator.models import UserForm
 
 def home(request):
-    t = get_template('index.html')
-    html = t.render(Context({}))
-    return HttpResponse(html)
+    c = {"tag_list":["art_gallery", "bicycle_store", "cafe", "book_store",
+    "aquarium", "park", "pet_store", "campground", "zoo",
+    "cemetery", "funeral_home", "liquor_store", "hospital",
+    "beauty_salon", "clothing_store", "florist", "hair_care",
+    "jewelry_store", "shoe_store", "shopping_mall", "spa", "department_store",
+    "accounting", "atm", "bank", "courthouse", "finance",
+    "insurance_agency", "lawyer", "parking", "post_office", "storage",
+    "bar", "casino", "night_club", "amusement_park"],
+        "login_form": UserForm()}
+    c.update(csrf(request))
+    return render_to_response('home.html', c)
 
 def add_user(request):
     '''
@@ -194,10 +202,10 @@ def _login_ajax(request):
 def is_logged_in(request):
     if request.user.is_authenticated():
         message = {
-            "message": "Is logged in"
+            "message": "true"
         }
     else:
         message = {
-            "message": "Not logged in"
+            "message": "false"
         }
     return HttpResponse(content=json.dumps(message), content_type="application/json")

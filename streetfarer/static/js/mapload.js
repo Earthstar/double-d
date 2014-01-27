@@ -109,9 +109,6 @@ $(function() {
       for (var i = 0, marker; marker = sbMarkers[i]; i++) {
         marker.setMap(null);
       }
-
-
-
       // For each place, get the icon, place name, and location.
       sbMarkers = [];
       var bounds = new google.maps.LatLngBounds();
@@ -172,6 +169,7 @@ $(function() {
       distance = distanceParam;
     if(tagsParam != null)
       tags = tagsParam;
+    console.log(tags)
     var modDist = distance/DISTANCE_CONSTANT;
     var request = {
       location: start,
@@ -301,16 +299,6 @@ $(function() {
     calcRoute(_start, waypoints);
   }
 
-  // Selects tag buttons
-  // Used for feature selection
-  // tags is a list of strings
-  function selectTag(tags) {
-    for (var i = 0; i < tags.length; i++) {
-      var tag = tags[i]
-      $("#"+tag+".place-tag").click()
-    }
-  }
-
   function displayError() {
     // Displays error on screen, most likely because internet down
     console.log("Couldn't load path")
@@ -322,8 +310,6 @@ $(function() {
   /*$("#refresh-map").click(function() {
     genRoute(start, dist, getActiveTags());
   });*/
-
-
 
   //Need to save path
   // Could be hacked. Need to sanitize inputs.

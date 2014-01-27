@@ -6,14 +6,14 @@
   {# All scripts that are needed for every page #}
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
-  {# <script src="{% static "js/bootstrap.min.js" %}"></script> #}
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
   <script src={% static "js/jquery.form.min.js" %}></script> {# Ajax forms #}
   <script src={% static "js/utilities.js" %}></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   {% block section_scripts %}
   {% endblock section_scripts %}
 
-  {# <link href="{% static "css/bootstrap.css" %}" rel="stylesheet"> #}
+  <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
   <link href="{% static "css/streetfarer.css" %}" rel="stylesheet">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   {% block section_css %}
@@ -42,7 +42,7 @@
     </div>
 
     <div id="login_register" class="header-float-right toggle-login">
-      <a class="label">Login</a>
+      <a id="login-link" class="label">Login</a>
     </div>
 
     <div id="saved_path" class="header-float-right">
@@ -64,13 +64,51 @@
 
     {% block hidden_login %}
   <script>
+  // Global variable
+  var isLoggedIn = false;
       $(function() {
+
         function printLoginStatus(data, textStatus, xhr) {
-          console.log(data)
           if (data.status === 'error') {
             $('#login-status').text(data.message)
           } else if (data.status === 'success') {
-            $('.login-parcel').toggle()
+            $('.login-parcel').toggle();
+            changeLoginToLogout()
+            // Clear login screen
+            $("#login-container input").val("")
+          }
+        }
+
+        function printSignupStatus(data, textStatus, xhr) {
+          if (data.status == 'error') {
+            $('#signup-status').text(data.message)
+          } else if (data.status === 'success') {
+            $('.login-parcel').toggle();
+            changeLoginToLogout()
+          }
+        }
+
+        function changeLoginToLogout() {
+          // Changes the text and link of the login/logout button
+          $("#login-link").text("Logout").attr("href", "/logout/");
+          isLoggedIn = true;
+        }
+
+        function checkLoggedIn() {
+          // Ask server whether we're logged in
+          $.ajax({
+            type: 'GET',
+            url: '/isloggedin/',
+            success: _checkLoggedIn,
+          });
+        }
+
+        function _checkLoggedIn(data) {
+          if (data.message === "true") {
+            isLoggedIn = true;
+            changeLoginToLogout()
+          } else {
+            isLoggedIn = false;
           }
         }
 
@@ -80,15 +118,6 @@
           success: printLoginStatus,
           });
 
-        function printSignupStatus(data, textStatus, xhr) {
-          console.log(data)
-          if (data.status == 'error') {
-            $('#signup-status').text(data.message)
-          } else if (data.status === 'success') {
-            $('.login-parcel').toggle()
-          }
-        }
-
         $('#signup-form').ajaxForm({
           url: '/user/signup/ajax',
           type: 'POST',
@@ -96,9 +125,16 @@
           });
 
         $('.toggle-login').click(function() {
-          console.log("in function")
-          $('.login-parcel').toggle();
+          // Only toggle if logged in
+          if (!isLoggedIn) {
+            console.log("not logged in")
+            $('.login-parcel').toggle();
+          }
         })
+
+        // If user is logged in and refreshes page, changes the login topbar to logout
+        checkLoggedIn()
+
       })
   </script>
 
