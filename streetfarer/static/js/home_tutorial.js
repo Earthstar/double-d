@@ -82,6 +82,13 @@ $(function() {
       $(this).slideUp("fast")
   })
 
-  $(elementsToToggleOnMapAppearance).hide("fast")
+  // If you click a preset tag, then select the correct tag
+  $(".preset-tag").click(function() {
+    // clear existing selected tags
+    $(".place-tag").removeClass("active")
+    var toSelect = $(this).attr("value")
+    toSelect = tagGroups[toSelect]
+    selectTag(toSelect)
+  })
 
 })

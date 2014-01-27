@@ -12,9 +12,14 @@ from django.template.loader import get_template
 from pathgenerator.models import UserForm
 
 def home(request):
-    c = {"tag_list":["restaurant", "cafe", "book_store", "zoo", "bar",
-        "florist", "movie_theater", "museum", "night_club", "library",
-        "aquarium", "liquor_store"],
+    c = {"tag_list":["art_gallery", "bicycle_store", "cafe", "book_store",
+    "aquarium", "park", "pet_store", "campground", "zoo",
+    "cemetery", "funeral_home", "liquor_store", "hospital",
+    "beauty_salon", "clothing_store", "florist", "hair_care",
+    "jewelry_store", "shoe_store", "shopping_mall", "spa", "department_store",
+    "accounting", "atm", "bank", "courthouse", "finance",
+    "insurance_agency", "lawyer", "parking", "post_office", "storage",
+    "bar", "casino", "night_club", "amusement_park"],
         "login_form": UserForm()}
     c.update(csrf(request))
     return render_to_response('home.html', c)

@@ -14,7 +14,7 @@
 {% block distance_indicator %}
 {# Hack to keep this hidden #}
 <input type="checkbox" id="walking_check" checked=true hidden></input>
-<div id="map-creation-bar" class="header">
+<div id="map-creation-bar" class="header" style="display: none;">
   <div id="header_top">
     <div class="container">
       <!-- vertical line <div class="divider"></div> -->
@@ -101,15 +101,15 @@
         <p class="large-text">What describes you?</p>
         <div id="preset-tag-container">
           <div class="row">
-            <button class="col-md-4" style="float: left">Nature-lover</button>
-            <button class="col-md-4" style="float: left">Stylish</button>
-            <button class="col-md-4" style="float: left">Morbid</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="natureLover">Nature-lover</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="stylish">Stylish</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="morbid">Morbid</button>
           </div>
           {# There's some weirdness when the page is too big, above ~900px #}
           <div class="row">
-            <button class="col-md-4" style="float: left">Hipster</button>
-            <button class="col-md-4" style="float: left">Party-animal</button>
-            <button class="col-md-4" style="float: left">Boring</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="hipster">Hipster</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="partyAnimal">Party-animal</button>
+            <button class="col-md-4 preset-tag radio-toggle" style="float: left" value="boring">Boring</button>
           </div>
         </div>
       </div>
@@ -142,7 +142,8 @@
 
   {% block undermap_content %}
 {# Add a whole bunch of buttons #}
-  <div class="container button-container place-tag-container">
+  <div class="container button-container place-tag-container" style="display: none;">
+
     {% for tag in tag_list %}
     {# Note that if button is active, it will have an "active" class #}
       <button class="place-tag rounded-button float-left label check-toggle" id="{{tag}}" value="{{tag}}" type="button">{{tag}}</button>
