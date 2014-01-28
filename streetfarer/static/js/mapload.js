@@ -57,13 +57,14 @@ $(function() {
     formatTagTitles();
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: cambridge,
+      disableDefaultUI: true,
       zoom: 2
     });
 
      // Create the search box and link it to the UI element.
     var inputOnMap = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputOnMap);
+    map.controls[google.maps.ControlPosition.TOP].push(inputOnMap);
     var inputOnCarousel = document.getElementById('carousel-searchbar')
     if(inputOnCarousel) {
       searchboxInit(inputOnCarousel);
